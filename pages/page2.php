@@ -17,7 +17,7 @@
         <a href="../pages/page3.php" class="head-main">Page 3</a>
         </span>
 
-        <h1 class="main-title">Analitics</h1>
+        <h1 class="main-title">Page 2</h1>
     </header>
 </body>
 </html>
