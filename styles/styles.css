@@ -86,7 +86,8 @@ h1{
     line-height: 42px;
     padding: 0;
     border: none;
-    padding: 2px;
+    padding: 5px;
+    border-radius: 10px;
 }
 
 .main-page button:hover {
