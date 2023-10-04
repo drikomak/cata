@@ -1,8 +1,23 @@
 *{
     background-color: wheat;
+    border: solid black 1px;
+    text-decoration: none;
 }
 
+header{
+}
+
+.main-title{
+    text-align: center;
+}
 
 .head-main{
-    padding-right: 100px;
+    display: flex;
+    flex-direction:row;
+    justify-content: flex-end;
+}
+
+.head-main a {
+    color: black;
+    margin-left: 50px; 
 }
