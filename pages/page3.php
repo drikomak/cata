@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
     <link href="../styles/styles.css" rel="stylesheet" />
-    <title>Page 3</title>
+    <title>Discover</title>
 </head>
 <body>
     <header> 
@@ -18,11 +18,12 @@
                 <ul>
                     <li><a href="../pages/page1.php">Page 1</a></li>
                     <li><a href="../pages/page2.php">Page 2</a></li>
-                    <li><a href="../pages/page3.php">Page 3</a></li>
+                    <li><a href="../pages/page3.php">Discover</a></li>
                 </ul>
             </div>
         </nav>
-
     </header>
+
+    <h1>Discover</h1>
 </body>
 </html>
