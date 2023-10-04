@@ -1,6 +1,5 @@
 *{
     font-family: 'Poppins', sans-serif;
-    color: aqua;
     /* border: solid black 1px;  */
     text-decoration: none;
     margin: 0;
@@ -14,20 +13,23 @@ a{
 }
 
 h1{
-    font-size: 3rem;
-    font-weight: 600;
     text-align: center;
 }
 
 .nav-bar{
     background-color: black;
-    padding: 15px;
+    padding: 25px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     box-sizing: border-box;
 }
+
+.nav-links{
+    width: 25%;
+}
+
 
 .nav-bar .nav-links ul{
     background-color: black;
@@ -49,4 +51,24 @@ h1{
     width: auto;
     height: 50px;
     object-fit: cover;
+}
+
+.image-main{
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;   
+}
+
+main-page{
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    display: flex;
+    position:relative;
+}
+
+.main-page h1 {
+    position: absolute; /* Position absolue par rapport au conteneur parent */
+    top: 40%; /* Placez le haut du texte au milieu du conteneur parent */
+    left: 10%; /* Placez le côté gauche du texte au milieu du conteneur parent */
 }

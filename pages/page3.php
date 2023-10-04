@@ -3,21 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
     <link href="../styles/styles.css" rel="stylesheet" />
     <title>Page 3</title>
 </head>
 <body>
-    <header>
+    <header> 
 
-        <a href="../main.php">Index</a>
-        <span class="head-main">
-        
-        <a href="../pages/page1.php" class="head-main">Page 1</a>
-        <a href="../pages/page2.php" class="head-main">Page 2</a>
-        <a href="../pages/page3.php" class="head-main">Page 3</a>
-        </span>
+        <nav class="nav-bar">
+        <a href="../main.php"><img class="logo" src="../images/logo3.png"></a>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="../pages/page1.php">Page 1</a></li>
+                    <li><a href="../pages/page2.php">Page 2</a></li>
+                    <li><a href="../pages/page3.php">Page 3</a></li>
+                </ul>
+            </div>
+        </nav>
 
-        <h1 class="main-title">Page 3</h1>
     </header>
 </body>
 </html>
