@@ -25,6 +25,42 @@
 
     </header>
 
+    <?php
+    require '../bdd.php';
+
+    $bdd = getBD();
+    ?>
+
+        <table>
+            <caption>Ouragans :</caption>
+
+            <thead> 
+                <tr>
+                <th>Nom</th>
+                <th>année</th>
+                <th>mois</th>
+                <th>jour</th>
+                <th>heure</th>
+                </tr>
+            </thead>
+            <?php
+
+             while ($ligne = $rep->fetch()) {
+                 echo "<tr>";
+                 echo "<td><a href=\"pages/page1.php?id_oura=" . $ligne['name'] . "\">" . $ligne['name'] . "</a></td>";
+                 echo "<td>" . $ligne['year'] . "</td>";
+                 echo "<td>" . $ligne['month'] . "</td>";
+                 echo "<td>" . $ligne['day'] . "</td>";
+                 echo "<td><img src='" . $ligne['hour'] . "'></td>";
+                 echo "</tr>";
+             };
+
+             $rep->closeCursor();
+
+            ?>
+        </table>
+
+
     <div class = "main">
         <h1>Données passées</h1>
     </div>
