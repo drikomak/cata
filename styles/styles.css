@@ -79,6 +79,13 @@ h1{
     left: 10%; /* Placez le côté gauche du texte au milieu du conteneur parent */
     max-width: 40%;
     text-align: justify;
+    border-left: 2px solid transparent;
+}
+
+.main-page p:hover{
+    padding-left: 10px;
+    border-left: 2px solid black;
+    transition: border-left 1.2s;
 }
 
 .main-page button {
@@ -125,4 +132,9 @@ h1{
 .main-page button:hover:after{
     width:100%;
     transition:800ms ease all;
+}
+
+.main h1{
+    text-align: left;
+    margin: 20px;
 }
