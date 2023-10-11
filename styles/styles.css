@@ -42,8 +42,14 @@ h1{
 }
 
 .nav-bar a{
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.4s;
     background-color: black;
     color: white;
+}
+
+.nav-bar a:hover{
+    border-bottom: 1px solid white;
 }
 
 
@@ -88,12 +94,14 @@ h1{
     border: none;
     padding: 5px;
     border-radius: 10px;
+    transition: ease-in-out 0.3s;
 }
 
 .main-page button:hover {
     background: transparent;
     color: #000;
-  }
+}
+
 .main-page button:before,
 .main-page button:after{
     content:'';
@@ -103,17 +111,18 @@ h1{
     height:2px;
     width:0;
     background: #000;
-  }
+}
 
-  .main-page button:after{
+
+.main-page button:after{
     right:initial;
     top:initial;
     left:0;
     bottom:0;
-  }
+}
 
 .main-page button:hover:before,
 .main-page button:hover:after{
     width:100%;
     transition:800ms ease all;
-  }
+}

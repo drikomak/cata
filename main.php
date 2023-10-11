@@ -27,6 +27,7 @@
     </header>
 
     <div class="main-page">
+        
         <h1>The most user friendly Ouragan catcher</h1>
 
         <p>Based on multiple sources of data including Nasa and local meteorological agencies,
@@ -35,8 +36,13 @@
 
            <a href="pages/page3.php"><button>Discover</button></a>
 
-        <img class="image-main" src="images/ouragan.jpg">
     </div>
     
+    <img class="image-main" src="images/ouragan.jpg">
+
+    <footer>
+        <div class="footer">
+            <p>© 2021 OuraGuessr</p>
+        </div>
     </body>
 </html>
