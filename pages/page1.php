@@ -29,6 +29,12 @@
     require '../bdd.php';
 
     $bdd = getBD();
+
+    $rep = $bdd->query('select name from corrected_hurricane_data');
+
+    // while ($ligne = $rep ->fetch()) {
+    //     echo $ligne['name']."<br />\n";
+    // }
     ?>
 
         <table>

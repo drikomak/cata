@@ -138,3 +138,30 @@ h1{
     text-align: left;
     margin: 20px;
 }
+
+.premier_par{
+    background-color: black;
+    color: #fff;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: row;
+}
+
+.premier_par h1 {
+    padding-top: 5%;
+    margin-bottom: 5%;
+    border-radius: 20px;
+}
+
+.premier_par p {
+    font-size: large;
+    padding-left: 20px;
+}
+
+.img_p3{
+    border-radius: 5%;
+    padding-left: 8px;
+    width: 300%;
+    height: auto;
+    object-fit: cover;   
+}

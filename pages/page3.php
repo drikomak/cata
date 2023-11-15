@@ -25,5 +25,17 @@
     </header>
 
     <h1>Discover</h1>
+    
+    <div class="premier_par">
+        <img src="../images/ouragan_photo_1.jpg" class="img_p3">
+        <div>
+        <h1>Un ouragan, qu'est ce que c'est ?</h1>
+        <p>Les ouragans sont des phénomènes météorologiques extrêmes qui peuvent causer des dégâts considérables. 
+        Ils se forment généralement dans les zones tropicales et sont caractérisés par des vents violents et des pluies torrentielles. 
+        Dans cette présentation, nous allons explorer les différents types d'ouragans, leur formation et leur impact sur les populations et les infrastructures. 
+        Nous allons également discuter des mesures de prévention et de sécurité à prendre en compte en cas d'ouragan.</p>
+        </div>  
+    </div>
+    
 </body>
 </html>
