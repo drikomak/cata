@@ -7,6 +7,11 @@
     list-style: none;
 }
 
+html {
+    background-color: black;
+    scroll-behavior: smooth;
+}
+
 a{
     text-decoration: none;
     color: black;
@@ -139,10 +144,14 @@ h1{
     margin: 20px;
 }
 
-.premier_par{
-    background-color: black;
+
+.p3{
     color: #fff;
-    margin-top: 10%;
+}
+.premier_par{
+    margin-top: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
     display: flex;
     flex-direction: row;
 }
@@ -156,12 +165,13 @@ h1{
 .premier_par p {
     font-size: large;
     padding-left: 20px;
+    text-align: justify;
 }
 
 .img_p3{
     border-radius: 5%;
     padding-left: 8px;
-    width: 300%;
+    width: 42em;
     height: auto;
     object-fit: cover;   
 }

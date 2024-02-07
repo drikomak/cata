@@ -16,9 +16,9 @@
     <a href="../main.php"><img class="logo" src="../images/logo3.png"></a>
         <div class="nav-links">
             <ul>
-                <li><a href="../pages/page1.php">Page 1</a></li>
-                <li><a href="../pages/page2.php">Page 2</a></li>
-                <li><a href="../pages/page3.php">Page 3</a></li>
+                <li><a href="../pages/page1.php">Algorithm</a></li>
+                <li><a href="../pages/page2.php">Rawdata</a></li>
+                <li><a href="../pages/page3.php">Discover</a></li>
             </ul>
         </div>
     </nav>
