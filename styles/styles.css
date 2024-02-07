@@ -8,7 +8,6 @@
 }
 
 html {
-    background-color: black;
     scroll-behavior: smooth;
 }
 
@@ -43,7 +42,7 @@ h1{
 
 .nav-bar .nav-links ul li{
     background-color: black;
-    margin: 0 25px;
+    margin: 0 8px;
 }
 
 .nav-bar a{
@@ -96,13 +95,12 @@ h1{
 .main-page button {
     font-size:large;
     position: absolute; 
-    top: 60%; 
-    left: 45%; 
+    top: 62%; 
+    left: 39%; 
     text-align: justify;
     background: #000;
     color: #fff;
     line-height: 42px;
-    padding: 0;
     border: none;
     padding: 5px;
     border-radius: 10px;
@@ -147,7 +145,9 @@ h1{
 
 .p3{
     color: #fff;
+    background-color: #000;
 }
+
 .premier_par{
     margin-top: 3%;
     margin-left: 3%;
@@ -174,4 +174,8 @@ h1{
     width: 42em;
     height: auto;
     object-fit: cover;   
+}
+
+table {
+    color: white;
 }

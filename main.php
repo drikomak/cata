@@ -20,6 +20,7 @@
                 <li><a href="pages/page1.php">Algorithm</a></li>
                 <li><a href="pages/page2.php">Rawdata</a></li>
                 <li><a href="pages/page3.php">Discover</a></li>
+                <li><a href="connexion.php">Connexion</a></li>
             </ul>
         </div>
     </nav>
@@ -34,7 +35,7 @@
             we developed a state of the art algorithm to predict key parameters of the next Ouragans.
         </p>
 
-           <a href="pages/page3.php"><button>Discover</button></a>
+           <a href="nouveau.php"><button>Créer un compte</button></a>
 
     </div>
     
