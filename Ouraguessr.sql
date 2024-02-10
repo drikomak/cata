@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : mer. 11 oct. 2023 à 10:58
+-- Généré le : sam. 10 fév. 2024 à 18:44
 -- Version du serveur : 5.7.39
 -- Version de PHP : 7.4.33
 
@@ -4739,6 +4739,51 @@ INSERT INTO `corrected_hurricane_data` (`name`, `year`, `month`, `day`, `hour`, 
 ('Sam', 2021, 10, 4, 12, '41.4', '-47.1', 'hurricane', 2, 85, 960, '0.930215358734131'),
 ('Sam', 2021, 10, 4, 18, '43.8', '-43.6', 'hurricane', 1, 80, 965, '0.930215358734131'),
 ('Sam', 2021, 10, 5, 0, '46.5', '-40.5', 'hurricane', 1, 75, 965, '0.705194115638733');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+CREATE TABLE `user` (
+  `nom` varchar(255) NOT NULL,
+  `prenom` varchar(255) NOT NULL,
+  `adresse` text NOT NULL,
+  `mail` varchar(255) NOT NULL,
+  `mdp` varchar(255) NOT NULL,
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`nom`, `prenom`, `adresse`, `mail`, `mdp`, `id`) VALUES
+('aaaaaa', 'k', 'a', 'a', '$2y$10$hQYFno0TWkFYHRXIDG3RWeMwnopE0cuAj5CoVzWgZ804mf.sNDrzm', 1),
+('telooo', 'k', 'testing', 'a@a.com', '$2y$10$UpwB/5I7x41z.D72ZLj2gOOnBHmsAsjFbvo/AtP0KpNYBsyFr0UIy', 2),
+('aaaaaa', 'k', 'a', 'a@a.com', '$2y$10$1U5yfRpMlk3sBeiTyWadlOMXT6RdBUgD6sEk9/9X4MU80ADvERuHS', 3),
+('aaaaaa', 'k', 'test', 'test@t.com', '$2y$10$HDA8m5IXrN/tKi/hA4P/TOSJy.LlJvMQZg7.8rDZLvRfi3RBZVZxG', 4);
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
