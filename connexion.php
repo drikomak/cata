@@ -6,10 +6,45 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link href="styles/styles.css" rel="stylesheet" />
     <title>Connexion</title>
+
+    <?php
+    include 'bd.php';
+    $bdd = getBD();
+    ?>
+
 </head>
+
 <body>
+    <script>
+            $(document).ready(function() {
+                $('form').submit(function(e) {
+                    e.preventDefault();
+
+                    var formData = {
+                        'email': $('#email').val(),
+                        'motdepasse': $('#motdepasse').val()
+                    };
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'connecter.php',
+                        data: formData,
+                        dataType: 'json',
+                        encode: true
+                    })
+                    .done(function(response) {
+                        if (response.success) {
+                            window.location.href = 'main.php';
+                        } else {
+                            alert(response.message);
+                        }
+                    });
+                });
+            });
+    </script>
 
     <header>
 

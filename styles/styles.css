@@ -92,11 +92,11 @@ h1{
     transition: border-left 1.2s;
 }
 
-.main-page button {
+#createButton {
     font-size:large;
     position: absolute; 
     top: 62%; 
-    left: 39%; 
+    left: 38%; 
     text-align: justify;
     background: #000;
     color: #fff;
@@ -107,13 +107,31 @@ h1{
     transition: ease-in-out 0.3s;
 }
 
-.main-page button:hover {
+#discoverButton {
+    font-size:large;
+    position: absolute; 
+    top: 62%; 
+    left: 44.5%; 
+    text-align: justify;
+    background: #000;
+    color: #fff;
+    line-height: 42px;
+    border: none;
+    padding: 5px;
+    border-radius: 10px;
+    transition: ease-in-out 0.3s;
+}
+
+#createButton:hover,
+#discoverButton:hover {
     background: transparent;
     color: #000;
 }
 
-.main-page button:before,
-.main-page button:after{
+#createButton:before,
+#createButton:after,
+#discoverButton:before,
+#discoverButton:after{
     content:'';
     position:absolute;
     top:0px;
@@ -124,15 +142,18 @@ h1{
 }
 
 
-.main-page button:after{
+#createButton:after,
+#discoverButton:after{
     right:initial;
     top:initial;
     left:0;
     bottom:0;
 }
 
-.main-page button:hover:before,
-.main-page button:hover:after{
+#createButton:hover:before,
+#createButton:hover:after,
+#discoverButton:hover:before,
+#discoverButton:hover:after{
     width:100%;
     transition:800ms ease all;
 }

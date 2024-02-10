@@ -6,6 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link href="styles/styles.css" rel="stylesheet" />
     <title>Nouveau</title>
 </head>
@@ -19,19 +20,17 @@
     ?>
 
     <header>
-
-    <nav class="nav-bar">
-    <a href="main.php"><img class="logo" src="images/logo3.png"></a>
-        <div class="nav-links">
-            <ul>
-                <li><a href="pages/page1.php">Algorithm</a></li>
-                <li><a href="pages/page2.php">Rawdata</a></li>
-                <li><a href="pages/page3.php">Discover</a></li>
-                <li><a href="../connexion.php">Connexion</a></li>
-            </ul>
-        </div>
-    </nav>
-
+        <nav class="nav-bar">
+            <a href="main.php"><img class="logo" src="images/logo3.png"></a>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="pages/page1.php">Algorithm</a></li>
+                    <li><a href="pages/page2.php">Rawdata</a></li>
+                    <li><a href="pages/page3.php">Discover</a></li>
+                    <li><a href="../connexion.php">Connexion</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
 
     <h1>Enregistrement utilisateur</h1>
@@ -49,17 +48,16 @@
     </form>
 
     <script>
-        // Envoi du formulaire avec AJAX
-        $("#envoieBtn").click(function(e) {
+        $(document).ready(function() {
+            $("#envoieBtn").click(function(e) {
                 e.preventDefault();
 
                 if (
                     $("input[name='n']").val() !== "" &&
                     $("input[name='p']").val() !== "" &&
                     $("input[name='adr']").val() !== "" &&
-                    $("input[name='num']").val() !== ""
+                    $("input[name='mail']").val() !== ""
                 ) {
-                    // Effectuer la requête AJAX pour enregistrer le compte
                     $.ajax({
                         type: "POST",
                         url: "enregistrement.php",
@@ -68,12 +66,10 @@
                         success: function(response) {
                             if (response.status === "success") {
                                 $("#message").html("<p style='color:green;'>Compte créé avec succès!</p>");
-                                // Rediriger vers la page d'accueil après 1 seconde
                                 setTimeout(function() {
-                                    window.location.href = "index.php";
+                                    window.location.href = "main.php";
                                 }, 1000);
                             } else {
-                                // Afficher un message d'erreur
                                 $("#message").html("<p style='color:red;'>" + response.message + "</p>");
                             }
                         },
@@ -83,6 +79,7 @@
                     });
                 }
             });
+        });
     </script>
 
 </body>

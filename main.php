@@ -1,3 +1,7 @@
+<?php
+    session_start(); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,16 +15,27 @@
 </head>
 
 <body>
+
     <header>
+
 
     <nav class="nav-bar">
     <a href="main.php"><img class="logo" src="images/logo3.png"></a>
         <div class="nav-links">
             <ul>
-                <li><a href="pages/page1.php">Algorithm</a></li>
-                <li><a href="pages/page2.php">Rawdata</a></li>
-                <li><a href="pages/page3.php">Discover</a></li>
-                <li><a href="connexion.php">Connexion</a></li>
+            <?php
+            if (isset($_SESSION['user'])) {
+                echo '<li><a href="pages/page1.php">Algorithm</a></li>';
+                echo '<li><a href="pages/page2.php">Rawdata</a></li>';
+                echo '<li><a href="pages/page3.php">Discover</a></li>';
+                echo '<li><a href="profile.php"><img src="images/profil.png" height = 30px></a></li>'; }
+                else {
+                echo '<li><a href="pages/page1.php">Algorithm</a></li>';
+                echo '<li><a href="pages/page2.php">Rawdata</a></li>';
+                echo '<li><a href="pages/page3.php">Discover</a></li>';
+                echo '<li><a href="connexion.php">Connexion</a></li>';
+            }
+            ?>
             </ul>
         </div>
     </nav>
@@ -30,13 +45,16 @@
     <div class="main-page">
         
         <h1>The most user friendly Ouragan catcher</h1>
-
         <p>Based on multiple sources of data including Nasa and local meteorological agencies,
             we developed a state of the art algorithm to predict key parameters of the next Ouragans.
         </p>
-
-           <a href="nouveau.php"><button>Créer un compte</button></a>
-
+        <?php
+        if (isset($_SESSION['user'])) {
+            echo '<a href="pages/page3.php"><button id="discoverButton">Discover</button></a>';
+        } else {
+            echo '<a href="nouveau.php"><button id="createButton">Créer un compte</button></a>';
+        }
+        ?>
     </div>
     
     <img class="image-main" src="images/ouragan.jpg">
