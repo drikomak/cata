@@ -7,7 +7,7 @@ function getBD(){
 }
 
 function getBDpays(){
-    $bdd = new PDO('mysql:host=localhost;dbname=mondial;charset=utf8', 'root', '');
+    $bdd = new PDO('mysql:host=localhost;dbname=mondial;charset=utf8', 'root', 'root');
 
     return $bdd;
 }
