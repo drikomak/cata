@@ -28,7 +28,7 @@
     </header>
 
     <?php
-    require '../bdd.php';
+    require '../bd.php';
 
     $bdd = getBD();
 
