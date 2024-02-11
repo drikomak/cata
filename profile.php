@@ -57,13 +57,11 @@ echo "Email : <span class='editable' data-field='mail'>" . $user['mail'] . " <a 
             var newValue = prompt("Modification du champ " + field + ":");
             
             if (newValue !== null) {
-                // Send an AJAX request to update the field in the database
                 $.ajax({
                     type: "POST",
                     url: "modif_profile.php",
                     data: { field: field, value: newValue },
                     success: function (response) {
-                        console.log(response);
                         if (response === "success") {
                             $(this).text(newValue);
                         } else {

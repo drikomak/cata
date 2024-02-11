@@ -33,7 +33,7 @@
                 echo '<li><a href="pages/page1.php">Algorithm</a></li>';
                 echo '<li><a href="pages/page2.php">Rawdata</a></li>';
                 echo '<li><a href="pages/page3.php">Discover</a></li>';
-                echo '<li><a href="connexion.php">Connexion</a></li>';
+                echo '<li><a href="profile.php"><img src="images/profil.png" height = 30px></a></li>'; 
             }
             ?>
             </ul>
