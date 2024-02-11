@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require('../bdd.php'); 
+    <?php require('../bd.php'); 
     // Appel de la fonction pour obtenir la connexion à la base de données
     $bdd = getBD();
 
