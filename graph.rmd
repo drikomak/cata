@@ -1,0 +1,19 @@
+```{r}
+# Charger le package DBI
+library(DBI)
+
+# Connexion à la base de données
+conn <- dbConnect(RMySQL::MySQL(), 
+                  dbname = "ouraguessr", 
+                  host = "localhost", 
+                  port = 3306, # Port MySQL par défaut
+                  user = "root", 
+                  password = "")
+
+```
+```{r}
+result <- dbGetQuery(conn, "SELECT name,hour,pressure FROM corrected_hurricane_data where name='Doris'")
+print(result)
+print(result[1][2])
+```
+
