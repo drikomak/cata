@@ -27,7 +27,7 @@
                     <li><a href="pages/page1.php">Algorithm</a></li>
                     <li><a href="pages/page2.php">Rawdata</a></li>
                     <li><a href="pages/page3.php">Discover</a></li>
-                    <li><a href="../connexion.php">Connexion</a></li>
+                    <li><a href="connexion.php">Connexion</a></li>
                 </ul>
             </div>
         </nav>

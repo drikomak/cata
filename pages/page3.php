@@ -19,6 +19,7 @@
                     <li><a href="../pages/page1.php">Algorithm</a></li>
                     <li><a href="../pages/page2.php">Rawdata</a></li>
                     <li><a href="../pages/page3.php">Discover</a></li>
+                    <li><a href="../profile.php"><img src="../images/profil.png" height = 30px></a></li>
                 </ul>
             </div>
         </nav>

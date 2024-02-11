@@ -28,8 +28,7 @@ if (isset($_POST['email']) && isset($_POST['motdepasse'])) {
             echo json_encode(array('success' => false, 'message' => 'Adresse e-mail ou mot de passe incorrects.'));
         }
     } else {
-        // Utilisez errorInfo() pour obtenir des informations sur l'erreur
-        echo json_encode(array('success' => false, 'message' => 'Erreur lors de l\'exécution de la requête : ' . $requete->errorInfo()[2]));
+        echo json_encode(array('success' => false, 'message' => 'Une erreur s\'est produite lors de la connexion.'));
     }
 } else {
     echo json_encode(array('success' => false, 'message' => 'Les champs email et motdepasse sont requis.'));

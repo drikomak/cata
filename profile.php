@@ -28,6 +28,8 @@
         </nav>
     </header>
 
+
+<h1>Profil</h1>    
 <?php
 
 session_start();
