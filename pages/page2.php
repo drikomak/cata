@@ -34,11 +34,11 @@
     </nav>
 
     </header>
-    <h1><span class="txt">DONNEES BRUTES <?php echo "Banane";?></span></h1>
+    <h1><span class="txt">DONNEES BRUTES</span></h1>
 
     <h2><span class="txt">Statistique : Des données qui concernent l'Amérique du Nord</span></h2>
     <div class="photo" ><img class="imgp2" src="../images/north_america.jpg" alt="north america map"></div>
-    <p><span class=txt>Pour entrainer notre modèle de prédiction et pour consulter les statistiques des ouragans dans un but éducatif, nous avons récolté des données météorologiques sur les ouragans ayant frappé l'Amérique du nord</span></p>
+    <p><span class=txt>Choisissez l'ouragan et le paramètre que vous voulez étudier</span></p>
     <h3><span class=txt>Tableau des ouragans</span></h3>
 
     
