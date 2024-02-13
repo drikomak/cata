@@ -6,20 +6,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
-    <link href="../styles/styles.css" rel="stylesheet" />
+    <link href="../../styles/styles.css" rel="stylesheet" />
     <title>Discover</title>
 </head>
 <body class="p3">
     <header> 
 
         <nav class="nav-bar">
-        <a href="../main.php"><img class="logo" src="../images/logo3.png"></a>
+        <a href="../../main.php"><img class="logo" src="../../images/logo3.png"></a>
             <div class="nav-links">
                 <ul>
-                    <li><a href="../pages/page1.php">Algorithm</a></li>
-                    <li><a href="../pages/page2.php">Rawdata</a></li>
-                    <li><a href="../pages/page3.php">Discover</a></li>
-                    <li><a href="../profile.php"><img src="../images/profil.png" height = 30px></a></li>
+                    <li><a href="../Algorithme/Algorithme.php">Algorithm</a></li>
+                    <li><a href="../RawData/RawData.php">Rawdata</a></li>
+                    <li><a href="Discover.php">Discover</a></li>
+                    <li><a href="../Connexion/profile.php"><img src="../../images/profil.png" height = 30px></a></li>
                 </ul>
             </div>
         </nav>
@@ -28,7 +28,7 @@
     <h1>Discover</h1>
 
     <div class="premier_par">
-        <img src="../images/ouragan_photo_1.jpg" class="img_p3">
+        <img src="../../images/ouragan_photo_1.jpg" class="img_p3">
         <div>
         <h1>Un ouragan, qu'est ce que c'est ?</h1>
         <p>Les ouragans sont des phénomènes météorologiques extrêmes qui peuvent causer des dégâts considérables. 
@@ -48,7 +48,7 @@
             Les ouragans peuvent également avoir des conséquences à long terme sur l'environnement, avec la destruction d'écosystèmes fragiles tels que les mangroves et les récifs coralliens. En fin de compte, 
             les ouragans sont des phénomènes naturels redoutables qui mettent à l'épreuve la résilience des communautés touchées, nécessitant une coordination et une aide internationales pour la reconstruction et la récupération.</p>
         </div>  
-        <img src="../images/ouragan_photo_2.jpg" class="img_p3">
+        <img src="../../images/ouragan_photo_2.jpg" class="img_p3">
     </div>
     
 </body>

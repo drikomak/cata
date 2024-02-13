@@ -1,5 +1,5 @@
 <?php
-require 'bd.php'; 
+require '../../BD/bd.php'; 
 $bdd = getBDpays();
 
 $query = $bdd->query('SELECT DISTINCT country_name,country_id FROM country ORDER BY country_name ASC');

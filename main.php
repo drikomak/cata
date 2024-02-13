@@ -25,15 +25,15 @@
             <ul>
             <?php
             if (isset($_SESSION['user'])) {
-                echo '<li><a href="pages/page1.php">Algorithm</a></li>';
-                echo '<li><a href="pages/page2.php">Rawdata</a></li>';
-                echo '<li><a href="pages/page3.php">Discover</a></li>';
-                echo '<li><a href="profile.php"><img src="images/profil.png" height = 30px></a></li>'; }
+                echo '<li><a href="pages/Algorithme/Algorithme.php">Algorithm</a></li>';
+                echo '<li><a href="pages/RawData/RawData/php">Rawdata</a></li>';
+                echo '<li><a href="pages/Discover/Discover.php">Discover</a></li>';
+                echo '<li><a href="pages/Connexion/profile.php"><img src="images/profil.png" height = 30px></a></li>'; }
                 else {
-                echo '<li><a href="pages/page1.php">Algorithm</a></li>';
-                echo '<li><a href="pages/page2.php">Rawdata</a></li>';
-                echo '<li><a href="pages/page3.php">Discover</a></li>';
-                echo '<li><a href="profile.php"><img src="images/profil.png" height = 30px></a></li>'; 
+                echo '<li><a href="pages/Algorithme/Algorithme.php">Algorithm</a></li>';
+                echo '<li><a href="pages/RawData/RawData.php">Rawdata</a></li>';
+                echo '<li><a href="pages/Discover/Discover.php">Discover</a></li>';
+                echo '<li><a href="pages/Connexion/profile.php"><img src="images/profil.png" height = 30px></a></li>'; 
             }
             ?>
             </ul>
@@ -50,9 +50,9 @@
         </p>
         <?php
         if (isset($_SESSION['user'])) {
-            echo '<a href="pages/page3.php"><button id="discoverButton">Discover</button></a>';
+            echo '<a href="pages/Discover/Discover.php"><button id="discoverButton">Discover</button></a>';
         } else {
-            echo '<a href="nouveau.php"><button id="createButton">Créer un compte</button></a>';
+            echo '<a href="pages/Connexion/nouveau.php"><button id="createButton">Créer un compte</button></a>';
         }
         ?>
     </div>

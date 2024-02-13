@@ -4,7 +4,7 @@ try {
     if (empty($_POST['n']) || empty($_POST['p']) || empty($_POST['adr']) || empty($_POST['mail']) || empty($_POST['mdp1']) || empty($_POST['mdp2']) || ($_POST['mdp1'] != $_POST['mdp2'])) {
         $response = array("status" => "error", "message" => "Veuillez remplir tous les champs du formulaire correctement.");
     } else {
-        include 'bd.php';
+        include '../../BD/bd.php';
         $bdd = getBD();
 
         $stmt = $bdd->prepare("INSERT INTO user (nom, prenom, adresse, mail, mdp) VALUES (:nom, :prenom, :adresse, :mail, :mdp)");
@@ -26,7 +26,7 @@ try {
     }
 } catch (Exception $e) {
     error_log("Erreur dans enregistrement.php : " . $e->getMessage());
-    $response = array("status" => "error", "message" => "Une erreur s'est produite. Veuillez réessayer.");
+    $response = array("status" => "error", "message" => "Une erreur s'est produite. Veuillez réessayer svp.");
 }
 
 // Retourne la réponse au format JSON

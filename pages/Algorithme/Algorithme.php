@@ -7,11 +7,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
-    <link href="../styles/styles.css" rel="stylesheet" />
+    <link href="../../styles/styles.css" rel="stylesheet" />
     <title>Données passées</title>
     <style>
         body {
-            background-image: url('../images/image_fond_page_algorithme.jpg');
+            background-image: url('../../images/image_fond_page_algorithme.jpg');
             background-size: cover;
             background-repeat: no-repeat;
         }
@@ -46,13 +46,13 @@
 <body>
     <header>
         <nav class="nav-bar">
-            <a href="../main.php"><img class="logo" src="../images/logo3.png"></a>
+            <a href="../../main.php"><img class="logo" src="../../images/logo3.png"></a>
             <div class="nav-links">
                 <ul>
-                    <li><a href="../pages/page1.php">Algorithm</a></li>
-                    <li><a href="../pages/page2.php">Rawdata</a></li>
-                    <li><a href="../pages/page3.php">Discover</a></li>
-                    <li><a href="../connexion.php">Connexion</a></li>
+                    <li><a href="Algorithme.php">Algorithm</a></li>
+                    <li><a href="../RawData/RawData.php">Rawdata</a></li>
+                    <li><a href="../Discover/Discover.php">Discover</a></li>
+                    <li><a href="../Connexion/connexion.php">Connexion</a></li>
                 </ul>
             </div>
         </nav>
@@ -70,6 +70,6 @@
             
         </select>
     </div>
-    <script src="../Interaction_menu_deroulant.js"></script>
+    <script src="Interaction_menu_deroulant.js"></script>
 </body>
 </html>

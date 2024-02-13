@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require('../bd.php'); 
+    <?php require('../../BD/bd.php'); 
     // Appel de la fonction pour obtenir la connexion à la base de données
     $bdd = getBD();
 
@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
-    <link href="../styles/styles.css" rel="stylesheet">
+    <link href="../../styles/styles.css" rel="stylesheet" rel="stylesheet">
     <title>Données Brutes</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -24,13 +24,13 @@
     <header>
 
     <nav class="nav-bar">
-    <a href="../main.php"><img class="logo" src="../images/logo3.png"></a>
+    <a href="../../main.php"><img class="logo" src="../../images/logo3.png"></a>
         <div class="nav-links">^
             <ul>
-                <li><a href="../pages/page1.php">Algorithm</a></li>
-                <li><a href="../pages/page2.php">Rawdata</a></li>
-                <li><a href="../pages/page3.php">Discover</a></li>
-                <li><a href="../profile.php"><img src="../images/profil.png" height = 30px></a></li>
+                    <li><a href="../Algorithme/Algorithme.php">Algorithm</a></li>
+                    <li><a href="RawData.php">Rawdata</a></li>
+                    <li><a href="../Discover/Discover.php">Discover</a></li>
+                    <li><a href="../Connexion/profile.php"><img src="../../images/profil.png" height = 30px></a></li>
             </ul>
         </div>
     </nav>
@@ -39,7 +39,7 @@
     <h1><span class="txt">DONNEES BRUTES</span></h1>
 
     <h2><span class="txt">Statistique : Des données qui concernent l'Amérique du Nord</span></h2>
-    <div class="photo" ><img class="imgp2" src="../images/north_america.jpg" alt="north america map"></div>
+    <div class="photo" ><img class="imgp2" src="../../images/north_america.jpg" alt="north america map"></div>
     
     <h3><span class=txt>Tableau des ouragans</span></h3>
 
@@ -60,7 +60,7 @@
 
 
 <h2><span class=txt>Temps réel : Utilisation d'un API</span></h2>
-<div class=photo><img class="imgp2" src="../images/api.webp" alt=""> <img class="imgp2" src="../images/dataflow.webp" alt=""></div>
+<div class=photo><img class="imgp2" src="../../images/api.webp" alt=""> <img class="imgp2" src="../../images/dataflow.webp" alt=""></div>
 <p><span class=txt>Les données météorologiques sont récoltées en temps réel grâce à l'API OpenWeatherMap. Cet API nous permet de récupérer des données météorologiques sur n'importe quelle ville du monde. Ces données sont ensuite utilisées pour être analysées par notre modèle de prédiction et afficher un résultat.</span></p>
  
 </body>

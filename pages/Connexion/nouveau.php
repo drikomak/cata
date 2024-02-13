@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link href="styles/styles.css" rel="stylesheet" />
+    <link href="../../styles/styles.css" rel="stylesheet" rel="stylesheet" />
     <title>Nouveau</title>
 </head>
 <body>
@@ -21,12 +21,12 @@
 
     <header>
         <nav class="nav-bar">
-            <a href="main.php"><img class="logo" src="images/logo3.png"></a>
+            <a href="../../main.php"><img class="logo" src="../../images/logo3.png"></a>
             <div class="nav-links">
                 <ul>
-                    <li><a href="pages/page1.php">Algorithm</a></li>
-                    <li><a href="pages/page2.php">Rawdata</a></li>
-                    <li><a href="pages/page3.php">Discover</a></li>
+                    <li><a href="../Algorithme/Algorithme.php">Algorithm</a></li>
+                    <li><a href="../RawData/RawData.php">Rawdata</a></li>
+                    <li><a href="../Discover/Discover.php">Discover</a></li>
                     <li><a href="connexion.php">Connexion</a></li>
                 </ul>
             </div>
@@ -67,7 +67,7 @@
                             if (response.status === "success") {
                                 $("#message").html("<p style='color:green;'>Compte créé avec succès!</p>");
                                 setTimeout(function() {
-                                    window.location.href = "main.php";
+                                    window.location.href = "../../main.php";
                                 }, 1000);
                             } else {
                                 $("#message").html("<p style='color:red;'>" + response.message + "</p>");

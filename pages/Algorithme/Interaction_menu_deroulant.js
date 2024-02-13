@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('../pays.php')
+    fetch('pays.php')
         .then(response => response.json())
         .then(data => {
             const countrySelect = document.getElementById('countrySelect');
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('countrySelect').addEventListener('change', function() {
         const countryId = this.value;
-        fetch(`../villes.php?country_id=${countryId}`)
+        fetch(`villes.php?country_id=${countryId}`)
             .then(response => response.json())
             .then(data => {
                 const citySelect = document.getElementById('citySelect');
