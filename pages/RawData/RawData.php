@@ -41,22 +41,33 @@
     <h2><span class="txt">Statistique : Des données qui concernent l'Amérique du Nord</span></h2>
     <div class="photo" ><img class="imgp2" src="../../images/north_america.jpg" alt="north america map"></div>
     
+    
+    <div class="txt">
+    
+
+    </div>
+    
     <h3><span class=txt>Tableau des ouragans</span></h3>
 
     <p><span class=txt>Choisissez l'ouragan et le paramètre que vous voulez étudier</span></p>
-    <div class="txt"><select name="noms" class="txt">
-    <?php
-    foreach($noms as $nom){
-        echo "<option value='".$nom."'>".$nom."</option>";
-    }
-    ?>
-    </select>
-
-    <select name="param" class=txt>
+    <div class=txt><form action="/traitement_du_formulaire" method="post">
+        <label for="ouragan">Ouragan :</label>
+        <select name="noms" class="txt">
+        <?php
+        foreach($noms as $nom){
+            echo "<option value='".$nom."'>".$nom."</option>";
+        }
+        ?>
+        </select>
+        <br><br>
+        <label for="param">Paramètre :</label>
+        <select name="param" class=txt>
         <option value="wind">Vent</option>
         <option value="pressure">Pression</option>
         <option value="exact_sst_anomaly">Anomalie de température surface</option>
-    </select></div>
+        </select>
+        <input type="submit" value="Soumettre" class=txt>
+    </form></div>
 
 
 <h2><span class=txt>Temps réel : Utilisation d'un API</span></h2>
