@@ -50,9 +50,9 @@
     <h3><span class=txt>Tableau des ouragans</span></h3>
 
     <p><span class=txt>Choisissez l'ouragan et le paramètre que vous voulez étudier</span></p>
-    <div class=txt><form action="/traitement_du_formulaire" method="post">
+    <div class=txt><form action="requete_graph.php" method="post">
         <label for="ouragan">Ouragan :</label>
-        <select name="noms" class="txt">
+        <select name="name" class="txt">
         <?php
         foreach($noms as $nom){
             echo "<option value='".$nom."'>".$nom."</option>";
