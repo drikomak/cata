@@ -1,11 +1,10 @@
 <?php
 header("Content-Type: application/json");
 require "../../BD/bd.php";
-
+$param=$_POST['param'];
 if (!empty($_POST['name']) && !empty($_POST['param'])) {
     $bdd = getBD();
-    $query = $bdd->prepare("SELECT :name, year, month, day, hour, :param FROM corrected_hurricane_data WHERE name = :name");
-    $query->bindParam(':param', $_POST["param"], PDO::PARAM_STR);
+    $query = $bdd->prepare("SELECT :name, year, month, day, hour, $param FROM corrected_hurricane_data WHERE name = :name");
     $query->bindParam(':name', $_POST["name"], PDO::PARAM_STR);
     $query->execute();
     $utilisateur = $query->fetch();

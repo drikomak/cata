@@ -18,6 +18,7 @@
     <link href="../../styles/styles.css" rel="stylesheet" rel="stylesheet">
     <title>Données Brutes</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 <body>
@@ -42,10 +43,6 @@
     <div class="photo" ><img class="imgp2" src="../../images/north_america.jpg" alt="north america map"></div>
     
     
-    <div class="txt">
-    
-
-    </div>
     
     <h3><span class=txt>Tableau des ouragans</span></h3>
 
@@ -68,12 +65,80 @@
         </select>
         <input type="submit" value="Soumettre" class=txt>
     </form></div>
+    <div class="txt" id="myChart"></div>
+
+<script>
+$(document).ready(function() {
+    $("form").on("submit", function(e) {
+        e.preventDefault();
+        var formData = $(this).serialize();
+        $.ajax({
+            url: 'requete_graph.php',
+            type: 'POST',
+            data: formData,
+            message: "erreur lors de la connexion",
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    // Créer le graphique avec les données reçues
+                    test(response.data);
+                } else {
+                    alert(response.message); // Affiche un message d'erreur
+                }
+            },
+            error: function() {
+                alert("Une erreur s'est produite lors de la connexion.");
+            }
+        });
+    });
+});
+function test(data){
+    var param = $('select[name="param"]').innerHTML;
+    var nom= $('select[name="name"]').innerHTML;
+    document.getElementById("myChart").innerHTML = "<h3>nom:"+nom+" et paramètre"+param+"</h3>";
+}
+function createChart(data) {
+    // Récupérer la valeur du paramètre sélectionné
+    var param = $('select[name="param"]').val();
+
+    // Extraction des données pour le graphique
+    var labels = data.map(entry => entry.year + '-' + entry.month + '-' + entry.day + ' ' + entry.hour);
+    var values = data.map(entry => entry[param]);
+
+    // Configuration du graphique
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Valeurs de ' + param,
+                data: values,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'day'
+                    }
+                }
+            }
+        }
+    });
+}
+
+</script>
 
 
 <h2><span class=txt>Temps réel : Utilisation d'un API</span></h2>
 <div class=photo><img class="imgp2" src="../../images/api.webp" alt=""> <img class="imgp2" src="../../images/dataflow.webp" alt=""></div>
 <p><span class=txt>Les données météorologiques sont récoltées en temps réel grâce à l'API OpenWeatherMap. Cet API nous permet de récupérer des données météorologiques sur n'importe quelle ville du monde. Ces données sont ensuite utilisées pour être analysées par notre modèle de prédiction et afficher un résultat.</span></p>
- 
+
 </body>
 <script>
 $(document).ready(function() {
