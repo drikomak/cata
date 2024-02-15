@@ -7,6 +7,7 @@ def convert_coordinates(coord):
         return -float(coord[:-1])
 
 def determine_category(max_wind):
+    max_wind = int(max_wind)
     if 74 <= max_wind <= 95:
         return 1
     elif 96 <= max_wind <= 110:
@@ -18,7 +19,7 @@ def determine_category(max_wind):
     elif max_wind >= 156:
         return 5
     else:
-        return 0 # Catégorie 0 pour des vitesses de vent hors des plages définies
+        return 0 
 
 processed_data = []
 
