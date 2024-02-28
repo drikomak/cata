@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
     <link href="../../styles/styles.css" rel="stylesheet" rel="stylesheet">
     <title>Données Brutes</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
@@ -26,7 +26,7 @@
 
     <nav class="nav-bar">
     <a href="../../main.php"><img class="logo" src="../../images/logo3.png"></a>
-        <div class="nav-links">^
+        <div class="nav-links">
             <ul>
                     <li><a href="../Algorithme/Algorithme.php">Algorithm</a></li>
                     <li><a href="RawData.php">Rawdata</a></li>
@@ -47,7 +47,8 @@
     <h3><span class=txt>Tableau des ouragans</span></h3>
 
     <p><span class=txt>Choisissez l'ouragan et le paramètre que vous voulez étudier</span></p>
-    <div class=txt><form action="requete_graph.php" method="post">
+    <div class=txt>
+        <form action="requete_graph.php" method="post">
         <label for="ouragan">Ouragan :</label>
         <select name="name" class="txt">
         <?php
@@ -64,8 +65,9 @@
         <option value="exact_sst_anomaly">Anomalie de température surface</option>
         </select>
         <input type="submit" value="Soumettre" class=txt>
-    </form></div>
-    <div class="txt" id="myChart"></div>
+        </form>
+    </div>
+    <canvas id="myChart"></canvas>
 
 <script>
 $(document).ready(function() {
@@ -76,14 +78,14 @@ $(document).ready(function() {
             url: 'requete_graph.php',
             type: 'POST',
             data: formData,
-            message: "erreur lors de la connexion",
             dataType: 'json',
             success: function(response) {
                 if (response.success) {
                     // Créer le graphique avec les données reçues
-                    test(response.data);
+                    console.log(response.data);
+                    createChart(response.data);
                 } else {
-                    alert(response.message); // Affiche un message d'erreur
+                    alert(response.message); // Afficher un message d'erreur
                 }
             },
             error: function() {
@@ -92,16 +94,13 @@ $(document).ready(function() {
         });
     });
 });
-function test(data){
-    var param = $('select[name="param"]').innerHTML;
-    var nom= $('select[name="name"]').innerHTML;
-    document.getElementById("myChart").innerHTML = "<h3>nom:"+nom+" et paramètre"+param+"</h3>";
-}
+
 function createChart(data) {
     // Récupérer la valeur du paramètre sélectionné
     var param = $('select[name="param"]').val();
+    var nom = $('select[name="name"]').val();
 
-    // Extraction des données pour le graphique
+    // Assembler les données de date en une chaîne de caractères
     var labels = data.map(entry => entry.year + '-' + entry.month + '-' + entry.day + ' ' + entry.hour);
     var values = data.map(entry => entry[param]);
 
@@ -122,15 +121,13 @@ function createChart(data) {
         options: {
             scales: {
                 x: {
-                    type: 'time',
-                    time: {
-                        unit: 'day'
-                    }
+                    type: 'category' // Utiliser l'axe x de type 'category' pour afficher les chaînes de caractères comme des étiquettes
                 }
             }
         }
     });
 }
+
 
 </script>
 
