@@ -39,7 +39,8 @@
 
     </header>
     <h1><span class="txt">DONNEES BRUTES</span></h1>
-    <a href="RawData3d.php">Testez avec 2 variables</a>
+   
+    <a href="RawData3d.php" class=txt>Testez avec 2 variables</a>
 
     <h2><span class="txt">Statistique : Des données qui concernent l'Amérique du Nord</span></h2>
     <div class="photo" ><img class="imgp2" src="../../images/north_america.jpg" alt="north america map"></div>

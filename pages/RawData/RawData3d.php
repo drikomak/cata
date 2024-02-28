@@ -39,7 +39,7 @@
 
     </header>
     <h1><span class="txt">DONNEES BRUTES</span></h1>
-    <a href="RawData.php">Testez avec une variable</a>
+    <a href="RawData.php" class=txt>Testez avec une variable</a>
 
     <h2><span class="txt">Statistique : Des données qui concernent l'Amérique du Nord</span></h2>
     <div class="photo" ><img class="imgp2" src="../../images/north_america.jpg" alt="north america map"></div>
@@ -105,14 +105,14 @@ $(document).ready(function() {
 
 function create3dChart(data) {
     // Récupérer les valeurs des paramètres sélectionnés
-    var paramX = 'variable1'; // Variable 1 (axe des x)
-    var paramY = 'variable2'; // Variable 2 (axe des y)
-    var paramZ = 'temps'; // Temps (axe des z)
+    var param1 = $('select[name="param1"]').val();
+    var param2 = $('select[name="param2"]').val();
+    var nom = $('select[name="name"]').val();
     
     // Extraction des données pour le graphe 3D
-    var xValues = data.map(entry => entry[paramX]);
-    var yValues = data.map(entry => entry[paramY]);
-    var zValues = data.map(entry => entry[paramZ]);
+    var xValues = data.map(entry => entry[param1]);
+    var yValues = data.map(entry => entry[param2]);
+    var zValues = data.map(entry => entry.year + '-' + entry.month + '-' + entry.day + ' ' + entry.hour);
 
     // Création de la trace pour le nuage de points 3D
     var trace = {
@@ -130,9 +130,9 @@ function create3dChart(data) {
     // Création de la mise en page
     var layout = {
         scene: {
-            xaxis: { title: 'Variable 1' },
-            yaxis: { title: 'Variable 2' },
-            zaxis: { title: 'Temps' }
+            xaxis: { title: param1 },
+            yaxis: { title: param2 },
+            zaxis: { title: 'Date et heure' }
         },
         margin: { l: 0, r: 0, b: 0, t: 0 } // Marges pour ajuster la taille du graphe
     };
