@@ -96,17 +96,25 @@ $(document).ready(function() {
 });
 
 function createChart(data) {
+    // Récupérer le canvas
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    // Vérifier si un graphique existe déjà
+    if (window.myChart instanceof Chart) {
+        // Si oui, le détruire
+        window.myChart.destroy();
+    }
+
     // Récupérer la valeur du paramètre sélectionné
     var param = $('select[name="param"]').val();
     var nom = $('select[name="name"]').val();
 
-    // Assembler les données de date en une chaîne de caractères
+    // Extraction des données pour le graphique
     var labels = data.map(entry => entry.year + '-' + entry.month + '-' + entry.day + ' ' + entry.hour);
     var values = data.map(entry => entry[param]);
 
-    // Configuration du graphique
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
+    // Configuration du nouveau graphique
+    window.myChart = new Chart(ctx, {
         type: 'line',
         data: {
             labels: labels,
@@ -121,13 +129,13 @@ function createChart(data) {
         options: {
             scales: {
                 x: {
-                    type: 'category' // Utiliser l'axe x de type 'category' pour afficher les chaînes de caractères comme des étiquettes
+                    type: 'category', // Utilisation des chaînes de caractères pour l'axe x
+                    labels: labels, // Définition des labels directement avec les chaînes de caractères
                 }
             }
         }
     });
 }
-
 
 </script>
 

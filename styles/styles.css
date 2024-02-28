@@ -224,3 +224,8 @@ table {
 select{
     align-items: center;
 }
+#myChart{
+    height: 400px;
+    background: white;
+    border-radius: 10px;
+}
