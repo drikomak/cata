@@ -39,7 +39,7 @@
 
     </header>
     <h1><span class="txt">DONNEES BRUTES</span></h1>
-    <a href="RawData3d.php">Testez avec 2 variables</a>
+    <a href="RawData.php">Testez avec une variable</a>
 
     <h2><span class="txt">Statistique : Des données qui concernent l'Amérique du Nord</span></h2>
     <div class="photo" ><img class="imgp2" src="../../images/north_america.jpg" alt="north america map"></div>
@@ -60,8 +60,14 @@
         ?>
         </select>
         <br><br>
-        <label for="param">Paramètre :</label>
-        <select name="param" class=txt>
+        <label for="param1">Paramètre 1 :</label>
+        <select name="param1" class=txt>
+        <option value="wind">Vent</option>
+        <option value="pressure">Pression</option>
+        <option value="exact_sst_anomaly">Anomalie de température surface</option>
+        </select>
+        <label for="param2">Paramètre 2 :</label>
+        <select name="param2" class=txt>
         <option value="wind">Vent</option>
         <option value="pressure">Pression</option>
         <option value="exact_sst_anomaly">Anomalie de température surface</option>
@@ -85,7 +91,7 @@ $(document).ready(function() {
                 if (response.success) {
                     // Créer le graphique avec les données reçues
                     console.log(response.data);
-                    create2dChart(response.data);
+                    create3dChart(response.data);
                 } else {
                     alert(response.message); // Afficher un message d'erreur
                 }
@@ -97,46 +103,42 @@ $(document).ready(function() {
     });
 });
 
-function create2dChart(data) {
-    // Récupérer le canvas
-    var ctx = document.getElementById('myChart').getContext('2d');
+function create3dChart(data) {
+    // Récupérer les valeurs des paramètres sélectionnés
+    var paramX = 'variable1'; // Variable 1 (axe des x)
+    var paramY = 'variable2'; // Variable 2 (axe des y)
+    var paramZ = 'temps'; // Temps (axe des z)
+    
+    // Extraction des données pour le graphe 3D
+    var xValues = data.map(entry => entry[paramX]);
+    var yValues = data.map(entry => entry[paramY]);
+    var zValues = data.map(entry => entry[paramZ]);
 
-    // Vérifier si un graphique existe déjà
-    if (window.myChart instanceof Chart) {
-        // Si oui, le détruire
-        window.myChart.destroy();
-    }
-
-    // Récupérer la valeur du paramètre sélectionné
-    var param = $('select[name="param"]').val();
-    var nom = $('select[name="name"]').val();
-
-    // Extraction des données pour le graphique
-    var labels = data.map(entry => entry.year + '-' + entry.month + '-' + entry.day + ' ' + entry.hour);
-    var values = data.map(entry => entry[param]);
-
-    // Configuration du nouveau graphique
-    window.myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Valeurs de ' + param,
-                data: values,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            }]
+    // Création de la trace pour le nuage de points 3D
+    var trace = {
+        x: xValues,
+        y: yValues,
+        z: zValues,
+        mode: 'markers',
+        marker: {
+            size: 5,
+            opacity: 0.8
         },
-        options: {
-            scales: {
-                x: {
-                    type: 'category', // Utilisation des chaînes de caractères pour l'axe x
-                    labels: labels, // Définition des labels directement avec les chaînes de caractères
-                }
-            }
-        }
-    });
+        type: 'scatter3d'
+    };
+
+    // Création de la mise en page
+    var layout = {
+        scene: {
+            xaxis: { title: 'Variable 1' },
+            yaxis: { title: 'Variable 2' },
+            zaxis: { title: 'Temps' }
+        },
+        margin: { l: 0, r: 0, b: 0, t: 0 } // Marges pour ajuster la taille du graphe
+    };
+
+    // Affichage du graphe 3D
+    Plotly.newPlot('myChart', [trace], layout);
 }
 
 </script>
