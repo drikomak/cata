@@ -13,13 +13,13 @@ conn <- dbConnect(RMySQL::MySQL(),
 
 ```
 ```{r}
-result <- dbGetQuery(conn, "SELECT year,month,day ,hour, name, wind, pressure, exact_sst_anomaly FROM corrected_hurricane_data where name='Katrina'")
+result <- dbGetQuery(conn, "SELECT year,month,day ,hour, name, wind, pressure, exact_sst_anomaly FROM corrected_hurricane_data where name='Frances'")
 print(result)
 ```
 ```{r}
 
 # Créer la colonne "date" en combinant les colonnes année, mois, jour et heure
-result$date <- as.Date(paste(result$year, result$month, result$day, sep = "-")) + 
+result$date <- as.Date(paste(result$year, result$month, result$day, result$hour, sep = "-")) + 
   as.difftime(result$hour, units = "hours")
 
 # Afficher le dataframe avec la colonne "date" ajoutée
@@ -27,9 +27,9 @@ print(result)
 ```
 
 ```{r}
-ggplot(data = result, aes(x = date, y = exact_sst_anomaly)) +
+ggplot(data = result, aes(x = date, y = wind)) +
   geom_line() +
-  labs(x = "heure", y = "pression", title = "Pression en fonction de lheure pour l'ouragan Doris")
+  labs(x = "heure", y = "vent", title = "vent en fonction de lheure pour l'ouragan Doris")
 ```
 
 
