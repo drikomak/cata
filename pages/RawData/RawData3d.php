@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require('../../BD/bd.php'); 
+<?php require('../../BD/bd.php'); 
     // Appel de la fonction pour obtenir la connexion à la base de données
     $bdd = getBD();
 
@@ -14,17 +14,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@0;1&display=swap" rel="stylesheet">
     <link href="../../styles/styles.css" rel="stylesheet" rel="stylesheet">
-    <title>Données Brutes</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
+    <title>Données Brutes</title>
 </head>
 <body>
-    <header>
-
+<header>
     <nav class="nav-bar">
     <a href="../../main.php"><img class="logo" src="../../images/logo3.png"></a>
         <div class="nav-links">
@@ -36,23 +34,29 @@
             </ul>
         </div>
     </nav>
-
     </header>
+
+
     <h1><span class="txt">DONNEES BRUTES</span></h1>
-    <a href="RawData.php" class=txt>Testez avec une variable</a>
 
-    <h2><span class="txt">Statistique : Des données qui concernent l'Amérique du Nord</span></h2>
-    <div class="photo" ><img class="imgp2" src="../../images/north_america.jpg" alt="north america map"></div>
+    <div class="premier_par">
+        <img class="img_p2" src="../../images/north_america.jpg" alt="north america map">
+        <div>
+        <h2 class="txt">Statistique : Des données qui concernent l'Amérique du Nord</h2>
+        <p class=txt>Dans un but éducatif, nous avons réalisé une interface permettant d'étudier les paramètres météorologiques 
+        d'ouragans ayant frappé les côtes Est et Ouest de l'Amérique du nord. En effet, cette zone géographique étant
+        particulièrement sujette aux intempéries et aux incidents météorologiques, elle bénéficie d'une attention spéciale
+        vis à vis de ce genre de phénomènes, et donc d'une riche base de données d'études et de statistiques.<br>
+        Vous pouvez choisir un ouragan et un paramètre à étudier. Les données seront ensuite affichées sous forme de graphique.
+        </p></div>
+    </div>
     
-    
-    
-    <h3><span class=txt>Tableau des ouragans</span></h3>
+    <h2><span class=txt>Choisissez l'ouragan et le paramètre que vous voulez étudier</span></h2>
 
-    <p><span class=txt>Choisissez l'ouragan et le paramètre que vous voulez étudier</span></p>
-    <div class=txt>
+    <div class=graph>
         <form action="requete_graph.php" method="post">
         <label for="ouragan">Ouragan :</label>
-        <select name="name" class="txt">
+        <select name="nameYear" class="txt">
         <?php
         foreach($noms as $nom){
             echo "<option value='".$nom."'>".$nom."</option>";
@@ -76,6 +80,7 @@
         </form>
     </div>
     <canvas id="myChart"></canvas>
+    <a href="RawData.php" class=txt>Testez avec 1 variable !</a>
 
 <script>
 $(document).ready(function() {
@@ -143,16 +148,26 @@ function create3dChart(data) {
 
 </script>
 
+<div class="premier_par">
+        <div>
+        <h2 class="txt">Temps réel : Utilisation d'un API</h2>
+        <p class=txt>Les données météorologiques sont récoltées en temps réel grâce à l'API OpenWeatherMap.<br>
+        Cet API nous permet de récupérer des données météorologiques sur n'importe quelle ville du monde.<br>
+        Ces données sont ensuite utilisées pour être analysées par notre modèle de prédiction et afficher un résultat.
+        </p></div>
+        <img class="img_p2" src="../../images/OpenWeather-Logo.jpg" alt="">
+    </div>
 
-<h2><span class=txt>Temps réel : Utilisation d'un API</span></h2>
-<div class=photo><img class="imgp2" src="../../images/api.webp" alt=""> <img class="imgp2" src="../../images/dataflow.webp" alt=""></div>
-<p><span class=txt>Les données météorologiques sont récoltées en temps réel grâce à l'API OpenWeatherMap. Cet API nous permet de récupérer des données météorologiques sur n'importe quelle ville du monde. Ces données sont ensuite utilisées pour être analysées par notre modèle de prédiction et afficher un résultat.</span></p>
-
+    <a href="../Algorithme/Algorithme.php" class=txt>Consultez notre algorithme !</a>
 </body>
 <script>
 $(document).ready(function() {
-    $("body").css("background", "linear-gradient(to bottom, black, rgb(100,100,100)");
+    $("body").css("background", "black");
+    $("body").css("background-size", "cover");
+    $("body").css("background-attachment", "fixed");
 });
+
 </script>
 
 </html>
+
