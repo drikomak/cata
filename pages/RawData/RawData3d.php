@@ -6,7 +6,7 @@
     $bdd = getBD();
 
     // Exécution de la requête SQL pour récupérer les noms
-    $requeteListeNoms = $bdd->prepare("SELECT DISTINCT name FROM corrected_hurricane_data order by name asc;");
+    $requeteListeNoms = $bdd->prepare("SELECT DISTINCT nameYear FROM corrected_hurricane_data order by nameYear asc;");
     $requeteListeNoms->execute();
     $noms= $requeteListeNoms->fetchAll(PDO::FETCH_COLUMN);
     ?>
