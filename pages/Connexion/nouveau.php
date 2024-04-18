@@ -11,6 +11,7 @@
     <title>Nouveau</title>
 </head>
 <body>
+<div id="weatherDisplay"></div>
 
     <?php
         $n = isset($_GET['n']) ? $_GET['n'] : '';
