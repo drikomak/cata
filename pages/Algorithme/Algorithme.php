@@ -1,75 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
-    <link href="../../styles/styles.css" rel="stylesheet" />
-    <title>Données passées</title>
+    <title>Carte Plein Écran</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <style>
-        body {
-            background-image: url('../../images/image_fond_page_algorithme.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
+        body, html {
+            height: 100%;  
+            margin: 0;   
+            padding: 0;   
         }
-
-        .select-container {
-            padding-top: 200px;
-            width: 100%;
-            max-width: 400px;
-            margin: auto;
-            padding: 20px;
-            background-color: #f0f0f0;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
-            border-radius: 8px; 
-            text-align: center; 
-        }
-
-        .select-container select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px; 
-            border-radius: 5px; 
-            border: 1px solid #ccc; 
-        }
-
-        .select-container option,label,select {
-            font-size: 16px;
-            font-weight: bold;
+        #map {
+            height: 100%;  
+            width: 100%;   
         }
     </style>
 </head>
-
 <body>
-    <header>
-        <nav class="nav-bar">
-            <a href="../../main.php"><img class="logo" src="../../images/logo3.png"></a>
-            <div class="nav-links">
-                <ul>
-                    <li><a href="Algorithme.php">Algorithm</a></li>
-                    <li><a href="../RawData/RawData.php">Rawdata</a></li>
-                    <li><a href="../Discover/Discover.php">Discover</a></li>
-                    <li><a href="../Connexion/connexion.php">Connexion</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <div class="select-container">
-        <label for="countrySelect">Pays :</label>
-        <select id="countrySelect" name="country">
-            <option value="">Sélectionnez un pays</option>
-            
-        </select>
+    <div id="map"></div>
+    <script>
+        var map = L.map('map', {
+            zoomControl: false,
+            scrollWheelZoom: false,
+            doubleClickZoom: false,
+            touchZoom: false,
+            drag: false,
+            keyboard: false
+        }).setView([20.0, -60.0], 3);
 
-        <label for="citySelect">Ville :</label>
-        <select id="citySelect" name="city">
-            <option value="">Sélectionnez d'abord un pays</option>
-            
-        </select>
-    </div>
-    <script src="Interaction_menu_deroulant.js"></script>
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+    </script>
 </body>
 </html>

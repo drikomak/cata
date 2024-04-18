@@ -2,20 +2,17 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Ouraguessr - Conditions Météo</title>
+    <title>Ouraguessr - Météo</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
-    <h1>Conditions Météorologiques</h1>
-    <?php echo "<p>Bonjour, voici les informations météorologiques.</p>"; ?>
-    <label for="citySelect">Choisissez une ville :</label>
-    <select id="citySelect">
-        <option value="Paris">Paris</option>
-        <option value="London">Londres</option>
-        <option value="New York">New York</option>
-        <option value="Tokyo">Tokyo</option>
-        <option value="Berlin">Berlin</option>
+    <select id="countrySelect">
+        <option value="">Sélectionnez un pays</option>
     </select>
-    <button onclick="fetchWeatherData(document.getElementById('citySelect').value)">Obtenir les Conditions Météo</button>
+    <select id="citySelect">
+        <option value="">Sélectionnez une ville</option>
+    </select>
 
     <div id="weatherDisplay"></div>
 
