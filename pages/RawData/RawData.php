@@ -14,13 +14,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
     <link href="../../styles/styles.css" rel="stylesheet" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <title>Données Brutes</title>
-
+    <style>
+        .txt {
+            opacity: 0;
+            transition: opacity 1s ease-in-out; /* Transition de 1 seconde avec une fonction d'accélération */
+        }
+        .txt.visible {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -52,7 +60,7 @@
         </p></div>
     </div>
     
-    <h2><span class=txt>Choisissez l'ouragan et le paramètre que vous voulez étudier</span></h2>
+    <h2 class=txt>Choisissez l'ouragan et le paramètre que vous voulez étudier</h2>
 
     <div class=graph>
         <form action="requete_graph.php" method="post">
@@ -60,23 +68,24 @@
         <select name="nameYear" class="txt">
         <?php
         foreach($noms as $nom){
-            echo "<option value='".$nom."'>".$nom."</option>";
+            echo "<option value='".$nom."' class=txt>".$nom."</option>";
         }
         ?>
         </select>
         <br>
         <label for="param">Paramètre :</label>
         <select name="param" class=txt>
-        <option value="wind">Vent</option>
-        <option value="pressure">Pression</option>
-        <option value="exact_sst_anomaly">Anomalie de température surface</option>
+        <option value="wind" class=txt>Vent</option>
+        <option value="pressure" class=txt>Pression</option>
+        <option value="exact_sst_anomaly" class=txt>Anomalie de température surface</option>
         </select>
         <br>
         <input type="submit" value="Soumettre" class=txt>
         </form>
     </div>
-    <canvas id="myChart"></canvas>
-    <a href="RawData3d.php" class=txt>Testez avec 2 variables !</a>
+    <div>
+    <canvas id="myChart"></canvas></div>
+    <a href="RawData3d.php" class=txt>Testez avec 2 paramètres !</a>
 
 <script>
 $(document).ready(function() {
@@ -163,11 +172,13 @@ function create2dChart(data) {
 </body>
 <script>
 $(document).ready(function() {
-    $("body").css("background", "black");
+    $("body").css("background", "linear-gradient(135deg, black, darkblue)");
+    $("body").css("background-repeat", "no-repeat");
     $("body").css("background-size", "cover");
-    $("body").css("background-attachment", "fixed");
+    $("html").css("background", "black");
+    $("header").css("margin-bottom", "1.5em");
+    $(".txt").addClass("visible");
 });
-
 </script>
 
 </html>

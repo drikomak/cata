@@ -51,7 +51,7 @@
         </p></div>
     </div>
     
-    <h2><span class=txt>Choisissez l'ouragan et le paramètre que vous voulez étudier</span></h2>
+    <h2 class=txt>Choisissez l'ouragan et les paramètres que vous voulez étudier</h2>
 
     <div class=graph>
         <form action="requete_graph.php" method="post">
@@ -80,7 +80,7 @@
         </form>
     </div>
     <canvas id="myChart"></canvas>
-    <a href="RawData.php" class=txt>Testez avec 1 variable !</a>
+    <a href="RawData.php" class=txt>Testez avec 1 paramètre !</a>
 
 <script>
 $(document).ready(function() {
@@ -162,12 +162,12 @@ function create3dChart(data) {
 </body>
 <script>
 $(document).ready(function() {
-    $("body").css("background", "black");
+    $("body").css("background", "linear-gradient(135deg, black, darkblue)");
+    $("body").css("background-repeat", "no-repeat");
     $("body").css("background-size", "cover");
-    $("body").css("background-attachment", "fixed");
+    $("html").css("background", "black");
+    $("header").css("margin-bottom", "1.5em");
+    $(".txt").addClass("visible");
 });
-
 </script>
-
 </html>
-
