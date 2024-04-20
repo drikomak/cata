@@ -19,6 +19,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment/dist/chartjs-adapter-moment.min.js"></script>
     <title>Données Brutes</title>
 </head>
 <body>
@@ -82,7 +84,7 @@
     <canvas id="myChart"></canvas>
     <a href="RawData.php" class=txt>Testez avec 1 paramètre !</a>
 
-<script>
+    <script>
 $(document).ready(function() {
     $("form").on("submit", function(e) {
         e.preventDefault();
@@ -94,10 +96,7 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    // Créer le graphique avec les données reçues
-                    console.log(response.data);
-                    create3dChart(response.data);
-                    $("#myChart").css("display", "block"); // Afficher le graphique une fois créé
+                    createScatterPlot(response.data);
                 } else {
                     alert(response.message); // Afficher un message d'erreur
                 }
@@ -109,43 +108,71 @@ $(document).ready(function() {
     });
 });
 
-function create3dChart(data) {
-    // Récupérer les valeurs des paramètres sélectionnés
+function createScatterPlot(data) {
+    // Récupérer le canvas
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    // Vérifier si un graphique existe déjà
+    if (window.myChart instanceof Chart) {
+        // Si oui, le détruire
+        window.myChart.destroy();
+    }
+
+    // Récupérer la valeur du paramètre sélectionné
     var param1 = $('select[name="param1"]').val();
     var param2 = $('select[name="param2"]').val();
-    var nom = $('select[name="name"]').val();
-    
-    // Extraction des données pour le graphe 3D
-    var xValues = data.map(entry => entry[param1]);
-    var yValues = data.map(entry => entry[param2]);
-    var zValues = data.map(entry => entry.year + '-' + entry.month + '-' + entry.day + ' ' + entry.hour);
 
-    // Création de la trace pour le nuage de points 3D
-    var trace = {
-        x: xValues,
-        y: yValues,
-        z: zValues,
-        mode: 'markers',
-        marker: {
-            size: 5,
-            opacity: 0.8
+    // Extraction des données pour le graphique
+// Extraction des données pour le graphique
+    var labels = data.map(entry => moment.utc(entry.year + '-' + entry.month + '-' + entry.day + ' ' + entry.hour + 'h', 'YYYY-M-D H[h]').toISOString());
+    var valuesParam1 = data.map(entry => entry[param1]);
+    var valuesParam2 = data.map(entry => entry[param2]);
+
+    // Calculer les rayons des points en fonction des valeurs de paramètre 2
+    var pointRadii = valuesParam2.map(value => {
+        // Normaliser les valeurs du paramètre 2 entre une plage de rayon de points, par exemple entre 3 et 10
+        return 3 + (value - Math.min(...valuesParam2)) * (10 - 3) / (Math.max(...valuesParam2) - Math.min(...valuesParam2));
+    });
+
+    window.myChart = new Chart(ctx, {
+        type: 'scatter',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Valeurs de ' + param1,
+                data: valuesParam1,
+                backgroundColor: 'rgba(0, 0, 200, 0.5)', // Couleur de remplissage des points en bleu avec opacité 0.5
+                borderColor: 'rgba(0, 0, 255, 1)', // Couleur de contour des points
+                borderWidth: 1,
+                pointRadius: pointRadii, // Taille des points basée sur les valeurs de paramètre 2
+                pointHoverRadius: 8 // Taille des points au survol
+            }]
         },
-        type: 'scatter3d'
-    };
-
-    // Création de la mise en page
-    var layout = {
-        scene: {
-            xaxis: { title: param1 },
-            yaxis: { title: param2 },
-            zaxis: { title: 'Date et heure' }
-        },
-        margin: { l: 0, r: 0, b: 0, t: 0 } // Marges pour ajuster la taille du graphe
-    };
-
-    // Affichage du graphe 3D
-    Plotly.newPlot('myChart', [trace], layout);
+        options: {
+            responsive: false, // Désactiver la réponse au changement de taille de la fenêtre
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    type: 'time', // Utiliser un axe de type 'time' pour les dates
+                    time: {
+                        unit: 'day' // Définir l'unité de temps (jour, mois, année, etc.)
+                    },
+                    title: {
+                        display: true,
+                        text: 'Date'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: param1
+                    }
+                }
+            }
+        }
+    });
 }
+
 </script>
 
 <div class="premier_par">
