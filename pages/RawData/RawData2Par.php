@@ -78,14 +78,19 @@
         </div>
         <canvas id="myChart" width="900" height="500"></canvas>
         <div id="legende"></div>
+        <div id="map" style="height: 600px; display: none"></div>
+        <script>
+            var map = L.map('map').setView([0, 0], 2); // Centrez la carte sur le monde entier avec un zoom de 2
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map); // Ajoutez une couche de tuiles OpenStreetMap
+        </script>
         <a href="RawData.php" class=txt>Testez avec 1 paramètre !</a>
 
 
     <div class="premier_par">
             <div>
-            <h2 class="txt">Temps réel : Utilisation d'un API</h2>
+            <h2 class="txt">Temps réel : Utilisation d'une API</h2>
             <p class=txt>Les données météorologiques sont récoltées en temps réel grâce à l'API OpenWeatherMap.<br>
-            Cet API nous permet de récupérer des données météorologiques sur n'importe quelle ville du monde.<br>
+            Cette API nous permet de récupérer des données météorologiques sur n'importe quelle ville du monde.<br>
             Ces données sont ensuite utilisées pour être analysées par notre modèle de prédiction et afficher un résultat.
             </p></div>
             <img class="img_p2" src="../../images/OpenWeather-Logo.jpg" alt="">
@@ -106,6 +111,24 @@
                     success: function(response) {
                         if (response.success) {
                             createScatterPlot(response.data);
+                            var latitudes = response.data.map(entry => entry.lat);
+                            var longitudes = response.data.map(entry => entry.long);
+
+                            // Créer un tableau de points de latitude et de longitude en tant que coordonnées de ligne pour Leaflet
+                            var trajetOuragan = latitudes.map(function(lat, index) {
+                                return [lat, longitudes[index]];
+                            });
+
+                            // Créer une ligne reliant les points de latitude et de longitude sur la carte
+                            var latLngs = trajetOuragan.map(function(coord) {
+                                return L.latLng(coord[0], coord[1]);
+                            });
+                            var polyline = L.polyline(latLngs, {color: 'red'}).addTo(map); // Ajouter la ligne à la carte
+
+                            // Ajuster le zoom et la vue de la carte pour afficher la trajectoire de l'ouragan
+                            map.fitBounds(polyline.getBounds());
+                            $("#map").show();
+                            
                         } else {
                             alert(response.message); // Afficher un message d'erreur
                         }

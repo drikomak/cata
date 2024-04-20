@@ -86,9 +86,9 @@
         <a href="RawData2Par.php" class=txt>Testez avec 2 paramètres !</a>
         <div class="premier_par">
             <div>
-            <h2 class="txt">Temps réel : Utilisation d'un API</h2>
+            <h2 class="txt">Temps réel : Utilisation d'une API</h2>
             <p class=txt>Les données météorologiques sont récoltées en temps réel grâce à l'API OpenWeatherMap.<br>
-            Cet API nous permet de récupérer des données météorologiques sur n'importe quelle ville du monde.<br>
+            Cette API nous permet de récupérer des données météorologiques sur n'importe quelle ville du monde.<br>
             Ces données sont ensuite utilisées pour être analysées par notre modèle de prédiction et afficher un résultat.
             </p><a href="../Algorithme/Algorithme.php" class=txt>Consultez notre algorithme !</a></div>
             <img class="img_p2" src="../../images/OpenWeather-Logo.jpg" alt="">
