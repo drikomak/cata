@@ -13,6 +13,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../../styles/stylesIlyas.css" rel="stylesheet" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -72,9 +77,14 @@
             </form>
         </div>
         <canvas id="myChart" width="900" height="500"></canvas>
-        <a href="RawData2Param.php" class=txt>Testez avec 2 paramètres !</a>
+        <div id="map" style="height: 600px; display: none"></div>
+        <script>
+            var map = L.map('map').setView([0, 0], 2); // Centrez la carte sur le monde entier avec un zoom de 2
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map); // Ajoutez une couche de tuiles OpenStreetMap
+        </script>
 
-    <div class="premier_par">
+        <a href="RawData2Par.php" class=txt>Testez avec 2 paramètres !</a>
+        <div class="premier_par">
             <div>
             <h2 class="txt">Temps réel : Utilisation d'un API</h2>
             <p class=txt>Les données météorologiques sont récoltées en temps réel grâce à l'API OpenWeatherMap.<br>
@@ -99,7 +109,24 @@
                         // Créer le graphique avec les données reçues
                         console.log(response.data);
                         create2dChart(response.data);
+                        var latitudes = response.data.map(entry => entry.lat);
+                        var longitudes = response.data.map(entry => entry.long);
+
+                        // Créer un tableau de points de latitude et de longitude en tant que coordonnées de ligne pour Leaflet
+                        var trajetOuragan = latitudes.map(function(lat, index) {
+                            return [lat, longitudes[index]];
+                        });
+
+                        // Créer une ligne reliant les points de latitude et de longitude sur la carte
+                        var latLngs = trajetOuragan.map(function(coord) {
+                            return L.latLng(coord[0], coord[1]);
+                        });
+                        var polyline = L.polyline(latLngs, {color: 'red'}).addTo(map); // Ajouter la ligne à la carte
+
+                        // Ajuster le zoom et la vue de la carte pour afficher la trajectoire de l'ouragan
+                        map.fitBounds(polyline.getBounds());
                         $("#myChart").show();
+                        $("#map").show();
                     } else {
                         alert(response.message); // Afficher un message d'erreur
                     }
@@ -177,13 +204,7 @@
             }
         });
     }
-        $("body").css("background", "linear-gradient(135deg, black, darkblue)");
-        $("body").css("background-repeat", "no-repeat");
-        $("body").css("background-size", "cover");
-        $("html").css("background", "black");
-        $("header").css("margin-bottom", "1.5em");
         $(".txt").addClass("visible");
-        $(".txt").css("border","none");
         });
     </script>
 </html>

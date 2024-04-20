@@ -6,7 +6,7 @@ $param = $_POST['param'];
 
 if (!empty($_POST['nameYear']) && !empty($_POST['param'])) {
     $bdd = getBD();
-    $query = $bdd->prepare("SELECT name, year, month, day, hour, $param, lat, 'long' FROM corrected_hurricane_data WHERE nameYear = :nameYear");
+    $query = $bdd->prepare("SELECT name, year, month, day, hour, $param, lat, `long` FROM corrected_hurricane_data WHERE nameYear = :nameYear");
     $query->bindParam(':nameYear', $_POST["nameYear"], PDO::PARAM_STR);
     $query->execute();
     $sortie = $query->fetchAll(PDO::FETCH_ASSOC); // Utilisation de fetchAll pour récupérer toutes les lignes
