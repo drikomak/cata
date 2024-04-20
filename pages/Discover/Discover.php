@@ -31,8 +31,8 @@
         $api_key = 'ac80fed48965452190a7dccad0bff3ab';
         $sources_to_include = $sources_to_include = 'bbc-news,cnn,reuter,new-york-times'; // Liste des sources à inclure, séparées par des virgules        ; // Liste des sources à inclure, séparées par des virgules
         $keywords = '"natural disaster"'; // Mots-clés pour filtrer les articles
-        $url = 'https://newsapi.org/v2/everything?q=' . urlencode($keywords) . '&sources=' . $sources_to_include . '&language=en&sortBy=publishedAt&apiKey=' . $api_key . '&pageSize=10';
-
+        $url = 'https://newsapi.org/v2/everything?q=' . urlencode($keywords) . '&sources=' . $sources_to_include . '&language=en&sortBy=relevancy&apiKey=' . $api_key . '&pageSize=9';
+        
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

@@ -323,50 +323,79 @@ select{
     display: none;
 }
 
-.mosaic {
-    display: flex;
-    flex-direction: row; /* Disposition de gauche a droite */
-    flex-wrap: wrap;
-    justify-content: space-between;
-    border-radius: 20%;
+/* Styles spécifiques à la section "Discover" */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.articles-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Trois colonnes égales */
+    grid-gap: 20px;
 }
 
 .article {
-    width: calc(33.33% - 2%); /* Largeur de chaque article */
-    margin: 1%;
-    text-align: center;
+    background-color: #f9f9f9;
     padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
-    flex-grow: 1;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.article-title {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #333; /* Couleur de texte plus foncée */
+.article h3 {
+    margin-top: 0;
 }
 
-
-.article-title a {
-    transition: color 0.3s ease; /* Transition fluide pour la couleur du texte */
-}
-
-.article-title a:hover {
-    color: #666; /* Couleur de texte gris */
+.article img {
+    width: 100%;
+    height: 200px; /* Taille fixe pour toutes les images */
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 
-.article-image {
-    width: 350px; /* Largeur fixe */
-    height: 200px; /* Hauteur fixe */
-    border-radius: 7px; /* Arrondi des bords de l'image */
-    object-fit: cover; /* Redimensionner l'image tout en conservant les proportions */
-    transition: transform 0.3s ease; /* Transition fluide pour l'effet de zoom */
+
+/* CSS pour la frame de l'article */
+#article-frame {
+    display: none; /* Par défaut, masquer la frame */
+    position: fixed;
+    top: 50%; /* Centrer verticalement */
+    left: 50%; /* Centrer horizontalement */
+    transform: translate(-50%, -50%); /* Centrer parfaitement */
+    width: 80%;
+    max-width: 800px; /* Limiter la largeur */
+    height: 80%;
+    max-height: 600px; /* Limiter la hauteur */
+    background-color: white;
+    border: 2px solid black; /* Ajouter un encadré noir */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Ajouter une ombre */
+    z-index: 1000; /* Assure que la frame apparaît au-dessus de tout le contenu */
+    overflow: auto; /* Ajoute une barre de défilement si le contenu est trop grand */
 }
 
-.article:hover .article-image {
-    transform: scale(1.1); /* Zoom de 10% lors du survol */
+#article-frame .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: grey;
+    cursor: pointer;
+    z-index: 1001; /* Assure que le bouton de fermeture apparaît au-dessus du fond */
 }
+
+#article-iframe {
+    width: 100%;
+    height: calc(100% - 40px); /* Ajuster la hauteur pour tenir compte du bouton de fermeture */
+    border: none; /* Supprimer les bordures de l'iframe */
+}
+
 
 
 

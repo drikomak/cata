@@ -88,7 +88,7 @@
 
     <div class="articles-container">
         <?php
-        $api_key = '66174e124357483a9f3cce4f3eec8281';
+        $api_key = 'ac80fed48965452190a7dccad0bff3ab';
         $url = 'https://newsapi.org/v2/everything?q=weather&language=en&sortBy=publishedAt&apiKey=' . $api_key . '&pageSize=10';
 
         $ch = curl_init();
