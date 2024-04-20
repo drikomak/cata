@@ -151,7 +151,7 @@ function create2dChart(data) {
             }]
         },
         options: {
-            responsive: true, // Désactiver la réponse au changement de taille de la fenêtre
+            responsive: false, // Désactiver la réponse au changement de taille de la fenêtre
             maintainAspectRatio: false,
             scales: {
                 x: {
