@@ -1,9 +1,10 @@
-/* Resetting default styles for uniformity across browsers */
 /* Base styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
 }
 
 body, html {
@@ -13,6 +14,7 @@ body, html {
     justify-content: center;
     align-items: center;
     font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f9;
 }
 
 /* Animated background gradient */
@@ -29,22 +31,20 @@ body, html {
 }
 
 body {
-    background: linear-gradient(-45deg, #3784f7, #3f0ba0, #66cff5, #001fac);
+    background: linear-gradient(-45deg, #200aa0, #1f50b9, #23a6d5, #23d5ab);
     background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
+    animation: gradient 10s ease infinite;
 }
 
 header {
     width: 100%;
     padding: 20px 50px;
-    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    background: transparent; /* Changed to transparent */
+    box-shadow: none; /* Remove box shadow for a fully transparent look */
     position: fixed;
     top: 0;
     z-index: 1000;
 }
-
-/* Other styles remain unchanged */
 
 .nav-bar {
     display: flex;
@@ -64,12 +64,13 @@ header {
 
 .nav-links ul li a {
     text-decoration: none;
-    color: #333;
-    font-weight: 500;
+    color: #ffffff; /* Consider changing text color for visibility against the background */
+    font-weight: bold;
+
 }
 
 .logo {
-    width: 200px; /* Adjusted width for better visibility */
+    width: 250px; /* Adjusted width for better visibility */
     height: auto; /* Keeps the aspect ratio */
 }
 
@@ -79,12 +80,12 @@ header {
     margin-top: 100px; /* Adjust top margin to not overlap with the header */
     width: 80%;
     max-width: 1000px;
-    gap: 20px; /* space between form containers */
+    gap: 20px; /* Space between form containers */
 }
 
 .form-container {
     flex: 1;
-    background: white;
+    background: rgba(255, 255, 255, 0.726);
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -101,17 +102,41 @@ input[type="email"], input[type="password"], input[type="text"] {
 }
 
 button {
-    width: 100%;
+    width: 70%;
     padding: 10px;
-    margin-top: 20px; /* Space above the button */
+    margin: 20px auto; /* Top and bottom margin 20px, left and right auto for centering */
     border: none;
     background-color: #007BFF;
     color: white;
-    border-radius: 4px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 16px; /* Larger text for better readability */
+    margin-left: 50px;
 }
+
 
 button:hover {
     background-color: #0056b3;
+}
+
+select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: white;
+    display: block;
+}
+
+.weather-info {
+    padding: 20px;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.login-form {
+    
+    max-height: 300px; /* Maximum width for login form */
 }

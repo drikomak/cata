@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,25 +27,33 @@
     </header>
     <div class="container" id="authContainer">
         <div class="form-container login-form">
-            <h1>Connexion</h1>
+            <h1>Déjà inscrit ?</h1>
             <form>
-                <input type="email" id="email" name="email" placeholder="Adresse e-mail" required><br>
-                <input type="password" id="motdepasse" name="motdepasse" placeholder="Mot de passe" required><br>
+                <input type="email" id="email" name="email" placeholder="Adresse e-mail" required>
+                <input type="password" id="motdepasse" name="motdepasse" placeholder="Mot de passe" required>
                 <button type="submit" id="loginBtn">Se connecter</button>
             </form>
         </div>
         <div class="form-container signup-form">
-            <h1>Enregistrement utilisateur</h1>
+            <h1>Nouveau sur OuraGuessr ?</h1>
             <form id="signupForm" autocomplete="off">
                 <input type="text" name="n" placeholder="Nom" required>
                 <input type="text" name="p" placeholder="Prénom" required>
                 <input type="text" name="adr" placeholder="Adresse" required>
+                <select id="countrySelect" name="country" required>
+                    <option value="">Sélectionnez un pays</option>
+                </select>
+                <select id="citySelect" name="city" required>
+                    <option value="">Sélectionnez une ville</option>
+                </select>
                 <input type="text" name="mail" placeholder="Email" required>
                 <input type="password" name="mdp1" placeholder="Mot de passe" required>
                 <input type="password" name="mdp2" placeholder="Confirmez le mot de passe" required>
                 <button type="button" id="envoieBtn">Envoyer</button>
             </form>
         </div>
+        <div id="weatherDisplay" class="weather-info"></div>
     </div>
+    <script src="weather.js"></script>
 </body>
 </html>

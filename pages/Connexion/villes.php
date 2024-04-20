@@ -1,5 +1,5 @@
 <?php
-require '../BD/bd.php';
+require '../../BD/bd.php';
 $bdd = getBDpays();
 
 if (isset($_GET['country_id'])) {
