@@ -11,9 +11,8 @@
 </head>
 <body class="p3">
     <header> 
-
         <nav class="nav-bar">
-        <a href="../../main.php"><img class="logo" src="../../images/logo3.png"></a>
+            <a href="../../main.php"><img class="logo" src="../../images/logo3.png"></a>
             <div class="nav-links">
                 <ul>
                     <li><a href="../Algorithme/Algorithme.php">Algorithm</a></li>
@@ -29,8 +28,8 @@
 
     <?php
 
-// Clé d'API du New York Times
-$apiKey = 'OALu4obq4iv1eM5NA0eUkAshpnni4QJA';
+// Clé d'API de NewsAPI
+$apiKey = '66174e124357483a9f3cce4f3eec8281';
 
 // Nombre d'articles à afficher par page
 $perPage = 14;
@@ -42,10 +41,10 @@ $totalArticles = 15; // Par exemple, récupérer 30 articles au total
 $searchTerms = 'hurricanes,disaster,natural disaster,climate, climate change';
 
 // Boucle pour récupérer les articles par page
-for ($page = 0; $page * $perPage < $totalArticles; $page++) {
-    // URL de l'API du New York Times pour les articles sur les ouragans et les catastrophes naturelles,
+for ($page = 1; $page <= ceil($totalArticles / $perPage); $page++) {
+    // URL de l'API de NewsAPI pour les articles sur les ouragans et les catastrophes naturelles,
     // triés par date de publication, avec le nombre spécifié d'articles par page et la pagination
-    $url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=' . urlencode($searchTerms) . '&api-key=' . $apiKey . '&sort=newest&page-size=' . $perPage . '&page=' . ($page + 1);
+    $url = 'https://newsapi.org/v2/everything?q=' . urlencode($searchTerms) . '&pageSize=' . $perPage . '&page=' . $page . '&apiKey=' . $apiKey;
 
     // Effectuer la requête à l'API
     $response = file_get_contents($url);
@@ -59,22 +58,20 @@ for ($page = 0; $page * $perPage < $totalArticles; $page++) {
     $data = json_decode($response, true);
 
     // Vérifier si des articles ont été trouvés
-    if ($data['status'] !== 'OK') {
+    if ($data['status'] !== 'ok' || $data['totalResults'] === 0) {
         die('Aucun article trouvé.');
     }
 
     // Afficher les articles sur la page en mosaïque
     echo '<div class="mosaic">';
-    foreach ($data['response']['docs'] as $article) {
+    foreach ($data['articles'] as $article) {
         // Vérifier s'il y a une image associée à l'article
-        if (isset($article['multimedia'][0]['url'])) {
-            // Construire l'URL de l'image à partir de l'URL de base du New York Times
-            $imageUrl = 'https://www.nytimes.com/' . $article['multimedia'][0]['url'];
+        if (isset($article['urlToImage'])) {
             // Afficher l'image avec une classe pour la stylisation
             echo '<div class="article">';
-            echo '<img class="article-image" src="' . $imageUrl . '" alt="Image article">';
+            echo '<img class="article-image" src="' . $article['urlToImage'] . '" alt="Image article">';
             // Ajouter un lien autour du titre pour ouvrir l'article dans un nouvel onglet
-            echo '<h2 class="article-title"><a href="' . $article['web_url'] . '" target="_blank">' . $article['headline']['main'] . '</a></h2>';
+            echo '<h2 class="article-title"><a href="' . $article['url'] . '" target="_blank">' . $article['title'] . '</a></h2>';
             echo '</div>';
         }
     }
@@ -84,20 +81,19 @@ for ($page = 0; $page * $perPage < $totalArticles; $page++) {
 ?>
 
 
-
 <div class="premier_par">
-        <img src="../../images/ouragan_photo_1.jpg" class="img_p3">
-        <div>
-        <h1>Un ouragan, qu'est ce que c'est ?</h1>
+    <img src="../../images/ouragan_photo_1.jpg" class="img_p3">
+    <div>
+        <h1>Un ouragan, qu'est-ce que c'est ?</h1>
         <p>Les ouragans sont des phénomènes météorologiques extrêmes qui peuvent causer des dégâts considérables. 
         Ils se forment généralement dans les zones tropicales et sont caractérisés par des vents violents et des pluies torrentielles. 
         Dans cette présentation, nous allons explorer les différents types d'ouragans, leur formation et leur impact sur les populations et les infrastructures. 
         Nous allons également discuter des mesures de prévention et de sécurité à prendre en compte en cas d'ouragan.</p>
-        </div>  
-    </div>
+    </div>  
+</div>
 
-    <div class="premier_par" >
-        <div>
+<div class="premier_par" >
+    <div>
         <h1>Les conséquences</h1>
         <p>Les dégâts causés par un ouragan sont souvent dévastateurs, laissant derrière eux un paysage de destruction et de désolation. 
             Les vents violents, accompagnés de pluies torrentielles et de vagues déferlantes, ont le pouvoir de détruire des infrastructures entières, notamment des habitations, des routes et des ponts. 
@@ -105,11 +101,9 @@ for ($page = 0; $page * $perPage < $totalArticles; $page++) {
             laissant les communautés sans électricité pendant des jours, voire des semaines. Les répercussions économiques sont considérables, avec des coûts de reconstruction astronomiques. 
             Les ouragans peuvent également avoir des conséquences à long terme sur l'environnement, avec la destruction d'écosystèmes fragiles tels que les mangroves et les récifs coralliens. En fin de compte, 
             les ouragans sont des phénomènes naturels redoutables qui mettent à l'épreuve la résilience des communautés touchées, nécessitant une coordination et une aide internationales pour la reconstruction et la récupération.</p>
-        </div>  
-        <img src="../../images/ouragan_photo_2.jpg" class="img_p3">
-    </div>
-    
-
+    </div>  
+    <img src="../../images/ouragan_photo_2.jpg" class="img_p3">
+</div>
 
 </body>
 </html>
