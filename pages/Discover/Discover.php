@@ -29,16 +29,19 @@
     <div class="articles-container">
         <?php
         $api_key = 'ac80fed48965452190a7dccad0bff3ab';
-        $sources_to_include = $sources_to_include = 'bbc-news,cnn,reuter,new-york-times'; // Liste des sources à inclure, séparées par des virgules        ; // Liste des sources à inclure, séparées par des virgules
+        $sources_to_include = 'bbc-news,cnn,reuter,new-york-times'; // Liste des sources à inclure, séparées par des virgules        
         $keywords = '"natural disaster"'; // Mots-clés pour filtrer les articles
         $url = 'https://newsapi.org/v2/everything?q=' . urlencode($keywords) . '&sources=' . $sources_to_include . '&language=en&sortBy=relevancy&apiKey=' . $api_key . '&pageSize=9';
         
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3');
-        $response = curl_exec($ch);
-        curl_close($ch);
+        $options = [
+            'http' => [
+                'method' => 'GET',
+                'header' => 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36'
+            ]
+        ];
+        
+        $context = stream_context_create($options);
+        $response = file_get_contents($url, false, $context);
 
         $articles = json_decode($response, true);
 
@@ -53,8 +56,6 @@
                     echo "</div>";  
                 }
             }
-
-            
         } else {
             echo "No articles found.";
         }
