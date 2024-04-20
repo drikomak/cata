@@ -50,7 +50,7 @@
                     echo "<h3>" . " <a href=\"javascript:void(0);\" onclick=\"openArticle('".$article['url']."','".htmlspecialchars($article['title'], ENT_QUOTES)."');\">" . $article['title'] . "</a> (" . $article['source']['name'] . ")</h3>";
                     echo "<img src=\"" . $article['urlToImage'] . "\" alt=\"Article Image\">";
                     echo "<a href=\"" . $article['url'] . "\" target=\"_blank\"><button class=\"article-button\">Consulter l'article</button></a>";
-                    echo "</div>";
+                    echo "</div>";  
                 }
             }
 

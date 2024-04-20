@@ -18,8 +18,8 @@
                 <ul>
                     <li><a href="../../main.php">Accueil</a></li>
                     <li><a href="../RawData/RawData.php">Rawdata</a></li>
-                    <li><a href="Discover.php">Discover</a></li>
-                    <li><a href="Connexion/profile.php"><img src="../../images/profil.png" height = 30px></a></li>
+                    <li><a href="../Discover/Discover.php">Discover</a></li>
+                    <li><a href="../Connexion/profile.php"><img src="../../images/profil.png" height = 30px></a></li>
                 </ul>
             </div>
         </nav>
