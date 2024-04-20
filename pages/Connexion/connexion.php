@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,34 +25,86 @@
         </nav>
     </header>
     <div class="container" id="authContainer">
-        <div class="form-container login-form">
-            <h1>Déjà inscrit ?</h1>
-            <form>
-                <input type="email" id="email" name="email" placeholder="Adresse e-mail" required>
-                <input type="password" id="motdepasse" name="motdepasse" placeholder="Mot de passe" required>
-                <button type="submit" id="loginBtn">Se connecter</button>
-            </form>
-        </div>
-        <div class="form-container signup-form">
-            <h1>Nouveau sur OuraGuessr ?</h1>
-            <form id="signupForm" autocomplete="off">
-                <input type="text" name="n" placeholder="Nom" required>
-                <input type="text" name="p" placeholder="Prénom" required>
-                <input type="text" name="adr" placeholder="Adresse" required>
-                <select id="countrySelect" name="country" required>
-                    <option value="">Sélectionnez un pays</option>
-                </select>
-                <select id="citySelect" name="city" required>
-                    <option value="">Sélectionnez une ville</option>
-                </select>
-                <input type="text" name="mail" placeholder="Email" required>
-                <input type="password" name="mdp1" placeholder="Mot de passe" required>
-                <input type="password" name="mdp2" placeholder="Confirmez le mot de passe" required>
-                <button type="button" id="envoieBtn">Envoyer</button>
-            </form>
-        </div>
+    <div class="form-container login-form">
+    <h1>Déjà inscrit ?</h1>
+    <form id="loginForm" method="post">
+        <input type="email" id="email" name="email" placeholder="Adresse e-mail" required>
+        <input type="password" id="motdepasse" name="motdepasse" placeholder="Mot de passe" required>
+        <button type="submit" id="loginBtn">Se connecter</button>
+    </form>
+</div>
+<div class="form-container signup-form">
+    <h1>Nouveau sur OuraGuessr ?</h1>
+    <form id="signupForm" method="post" autocomplete="off">
+        <input type="text" name="n" placeholder="Nom" required>
+        <input type="text" name="p" placeholder="Prénom" required>
+        <input type="text" name="adr" placeholder="Adresse" required>
+        <select id="countrySelect" name="country" required>
+    <option value="" disabled selected>Sélectionnez un pays</option>
+    <!-- Assurez-vous que les options suivantes ont des valeurs qui ne sont pas "vides" -->
+</select>
+<select id="citySelect" name="city" required>
+    <option value="" disabled selected>Sélectionnez une ville</option>
+    <!-- Assurez-vous que les options suivantes ont des valeurs qui ne sont pas "vides" -->
+</select>
+
+        <input type="email" name="mail" placeholder="Email" required>
+        <input type="password" name="mdp1" placeholder="Mot de passe" required>
+        <input type="password" name="mdp2" placeholder="Confirmez le mot de passe" required>
+        <button type="submit" id="envoieBtn">Envoyer</button>
+    </form>
+</div>
+
         <div id="weatherDisplay" class="weather-info"></div>
     </div>
     <script src="weather.js"></script>
+    <script>
+$(document).ready(function() {
+    // Gestion de la connexion
+    $('#loginForm').submit(function(e) {
+        e.preventDefault();
+        var formData = $(this).serialize();
+        $.ajax({
+            type: 'POST',
+            url: 'connecter.php',
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                if (response.status === "success") {
+                    window.location.href = '../../main.php';
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function() {
+                alert("Une erreur s'est produite lors de la connexion. Veuillez réessayer.");
+            }
+        });
+    });
+
+    // Gestion de l'inscription
+    $('#signupForm').submit(function(e) {
+        e.preventDefault();
+        var formData = $(this).serialize();
+        $.ajax({
+            type: "POST",
+            url: "enregistrement.php",
+            data: formData,
+            dataType: "json",
+            success: function(response) {
+                if (response.status === "success") {
+                    alert("Compte créé avec succès!");
+                    window.location.href = "../../main.php";
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function() {
+                alert("Une erreur s'est produite lors de l'inscription. Veuillez réessayer.");
+            }
+        });
+    });
+});
+    </script>
 </body>
 </html>
