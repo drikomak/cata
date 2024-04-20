@@ -5,7 +5,7 @@
             require('../../BD/bd.php');  // Appel de la fonction pour obtenir la connexion à la base de données
             $bdd = getBD();
 
-            // Exécution de la requête SQL pour récupérer les noms
+            // Exécution de la requête SQL pour récupérer les noms des ouragans dans la colonne nameYear
             $requeteListeNoms = $bdd->prepare("SELECT DISTINCT nameYear FROM corrected_hurricane_data order by nameYear asc;");
             $requeteListeNoms->execute();
             $noms= $requeteListeNoms->fetchAll(PDO::FETCH_COLUMN);
@@ -15,16 +15,16 @@
         <link href="../../styles/stylesIlyas.css" rel="stylesheet" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet"> <!--Inclusion de la police d'écriture -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script><!-- on appelle la librairie Leaflet pour les études de trajectoires sur la carte  -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script><!--appel de chart.js pour générer les graphes -->
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment/dist/chartjs-adapter-moment.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment/dist/chartjs-adapter-moment.min.js"></script><!--on importe moment.js pour adapter les dates au format ISO dans le graphe-->
         <title>Données Brutes</title>
-    </head>
+    </head>it
     <body>
         <header>
             <nav class="nav-bar">
@@ -61,7 +61,7 @@
                 <select name="nameYear" class="txt">
                     <?php
                         foreach($noms as $nom){
-                            echo "<option value='".$nom."' class=txt>".$nom."</option>";
+                            echo "<option value='".$nom."' class=txt>".$nom."</option>"; // on affiche les noms des ouragans dans une liste déroulante
                         }
                     ?>
                 </select>
@@ -79,8 +79,8 @@
         <canvas id="myChart" width="900" height="500"></canvas>
         <div id="map" style="height: 600px;"></div>
         <script>
-            var map = L.map('map').setView([0, 0], 2); // Centrez la carte sur le monde entier avec un zoom de 2
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map); // Ajoutez une couche de tuiles OpenStreetMap
+            var map = L.map('map').setView([0, 0], 2); //on centre la carte sur le monde entier avec un zoom de 2
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map); // on ajoute une couche de tuiles OpenStreetMap
         </script>
 
         <a href="RawData2Par.php" class=txt>Testez avec 2 paramètres !</a>
@@ -99,25 +99,25 @@
             $("form").on("submit", function(e) {
             e.preventDefault();
             var formData = $(this).serialize();
-            $.ajax({
+            $.ajax({//début de la requête AJAX
                 url: 'requete_graph.php',
                 type: 'POST',
                 data: formData,
                 dataType: 'json',
                 success: function(response) {
                     if (response.success) {
-                        // Créer le graphique avec les données reçues
+                        // on crée le graphique avec les données reçues
                         console.log(response.data);
                         create2dChart(response.data);
                         var latitudes = response.data.map(entry => entry.lat);
-                        var longitudes = response.data.map(entry => entry.long);
+                        var longitudes = response.data.map(entry => entry.long);//récupération des coordonnées géographiques
 
-                        // Créer un tableau de points de latitude et de longitude en tant que coordonnées de ligne pour Leaflet
+                        // on crée un tableau de points de latitude et de longitude en tant que coordonnées de ligne pour Leaflet
                         var trajetOuragan = latitudes.map(function(lat, index) {
                             return [lat, longitudes[index]];
                         });
 
-                        // Créer une ligne reliant les points de latitude et de longitude sur la carte
+                        // on crée une ligne reliant les points de latitude et de longitude sur la carte
                         var latLngs = trajetOuragan.map(function(coord) {
                             return L.latLng(coord[0], coord[1]);
                         });
@@ -128,11 +128,11 @@
                         });
                         var polyline = L.polyline(latLngs, {color: 'red'}).addTo(map); // Ajouter la ligne à la carte
 
-                        // Ajuster le zoom et la vue de la carte pour afficher la trajectoire de l'ouragan
+                        // on ajuste le zoom et la vue de la carte pour afficher la trajectoire de l'ouragan
                         map.fitBounds(polyline.getBounds());
                         $("#myChart").show();
                     } else {
-                        alert(response.message); // Afficher un message d'erreur
+                        alert(response.message); // Affiche un message d'erreur
                     }
                 },
                 error: function() {
@@ -141,24 +141,24 @@
             });
         });
         function create2dChart(data) {
-        // Récupérer le canvas
+        // Récupère le canvas
         var ctx = document.getElementById('myChart').getContext('2d');
 
-        // Vérifier si un graphique existe déjà
+        // On vérifie si un graphique existe déjà
         if (window.myChart instanceof Chart) {
-            // Si oui, le détruire
+            // Si oui, on le détruit
             window.myChart.destroy();
         }
-        // Récupérer la valeur du paramètre sélectionné
+        // on récupère la valeur du paramètre sélectionné
         var param = $('select[name="param"]').val();
         var nom = $('select[name="name"]').val();
 
         // Extraction des données pour le graphique
-        var labels = data.map(entry => moment.utc(entry.year + '-' + entry.month + '-' + entry.day + ' ' + entry.hour + 'h', 'YYYY-M-D H[h]').toISOString());
+        var labels = data.map(entry => moment.utc(entry.year + '-' + entry.month + '-' + entry.day + ' ' + entry.hour + 'h', 'YYYY-M-D H[h]').toISOString());//conversion des dates au format ISO
         var values = data.map(entry => entry[param]);
 
         window.myChart = new Chart(ctx, {
-            type: 'line',
+            type: 'line',//graphique de type ligne
             data: {
                 labels: labels,
                 datasets: [{
@@ -170,13 +170,13 @@
                 }]
             },
             options: {
-                responsive: false, // Désactiver la réponse au changement de taille de la fenêtre
+                responsive: false, // Désactive la réponse au changement de taille de la fenêtre
                 maintainAspectRatio: true,
                 scales: {
                     x: {
-                        type: 'time', // Utiliser un axe de type 'time' pour les dates
+                        type: 'time', // Utilise un axe de type 'time' pour les dates
                         time: {
-                            unit: 'day' // Définir l'unité de temps (jour, mois, année, etc.)
+                            unit: 'day' // Définit l'unité de temps (jour)
                         },
                         title: {
                             display: true,
@@ -208,7 +208,7 @@
             }
         });
     }
-        $(".txt").addClass("visible");
+        $(".txt").addClass("visible"); //sert à l'animation des textes au chargement de la page
         });
     </script>
 </html>

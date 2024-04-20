@@ -1,0 +1,15 @@
+---
+title: "L3 MIASHS - Rapport de projet"
+author: 
+  - EL BOUJADAINI ilyas
+  - MAKROUM Idriss
+  - MAREF Badyss
+output: 
+  pdf_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::include_graphics("logo-licence.svg")
+```
