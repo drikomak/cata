@@ -18,7 +18,7 @@
                     <li><a href="../Algorithme/Algorithme.php">Algorithm</a></li>
                     <li><a href="../RawData/RawData.php">Rawdata</a></li>
                     <li><a href="Discover.php">Discover</a></li>
-                    <li><a href="../Connexion/profile.php"><img src="../../images/profil.png" height = 30px></a></li>
+                    <li><a href="../Connexion/connexion.php"><img src="../../images/profil.png" height = 30px></a></li>
                 </ul>
             </div>
         </nav>
