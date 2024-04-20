@@ -28,12 +28,12 @@
                 echo '<li><a href="pages/Algorithme/Algorithme.php">Algorithm</a></li>';
                 echo '<li><a href="pages/RawData/RawData/php">Rawdata</a></li>';
                 echo '<li><a href="pages/Discover/Discover.php">Discover</a></li>';
-                echo '<li><a href="pages/Connexion/profile.php"><img src="images/profil.png" height = 30px></a></li>'; }
+                echo '<li><a href="pages/Connexion/connexion.php"><img src="images/profil.png" height = 30px></a></li>'; }
                 else {
                 echo '<li><a href="pages/Algorithme/Algorithme.php">Algorithm</a></li>';
                 echo '<li><a href="pages/RawData/RawData.php">Rawdata</a></li>';
                 echo '<li><a href="pages/Discover/Discover.php">Discover</a></li>';
-                echo '<li><a href="pages/Connexion/profile.php"><img src="images/profil.png" height = 30px></a></li>'; 
+                echo '<li><a href="pages/Connexion/connexion.php"><img src="images/profil.png" height = 30px></a></li>'; 
             }
             ?>
             </ul>
@@ -52,7 +52,7 @@
         if (isset($_SESSION['user'])) {
             echo '<a href="pages/Discover/Discover.php"><button id="discoverButton">Discover</button></a>';
         } else {
-            echo '<a href="pages/Connexion/nouveau.php"><button id="createButton">Créer un compte</button></a>';
+            echo '<a href="pages/Connexion/connexion.php"><button id="createButton">Créer un compte</button></a>';
         }
         ?>
     </div>
