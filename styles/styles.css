@@ -323,79 +323,53 @@ select{
     display: none;
 }
 
- /* Styles spécifiques à la section "Discover" */
- .container h1 {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.articles-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
+.mosaic {
+    display: flex;
+    flex-direction: row; /* Disposition de gauche a droite */
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-radius: 20%;
 }
 
 .article {
-    background-color: #f9f9f9;
+    width: calc(33.33% - 2%); /* Largeur de chaque article */
+    margin: 1%;
+    text-align: center;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    flex-grow: 1;
 }
 
-.article h3 {
-    margin-top: 0;
-}
-
-.article img {
-    width: 100%;
-    height: 200px; /* Taille fixe pour toutes les images */
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+.article-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333; /* Couleur de texte plus foncée */
 }
 
 
-#article-frame {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: 80%;
-    max-width: 800px;
-    max-height: 600px;
-    border: 2px solid #333;
-    background-color: #fff;
-    z-index: 9999;
-    padding: 20px;
-    overflow-y: auto;
+.article-title a {
+    transition: color 0.3s ease; /* Transition fluide pour la couleur du texte */
 }
 
-/* Style pour le bouton de fermeture */
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
+.article-title a:hover {
+    color: #666; /* Couleur de texte gris */
 }
 
 
-.article-button {
-    display: flex; /* Utilise un conteneur flex */
-    justify-content: center;
-    padding: 5px 10px;
-    margin-top: 5px;
-    background-color: grey; /* Couleur de fond */
-    color: #fff; /* Couleur du texte */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s;
+.article-image {
+    width: 350px; /* Largeur fixe */
+    height: 200px; /* Hauteur fixe */
+    border-radius: 7px; /* Arrondi des bords de l'image */
+    object-fit: cover; /* Redimensionner l'image tout en conservant les proportions */
+    transition: transform 0.3s ease; /* Transition fluide pour l'effet de zoom */
 }
 
-/* Style au survol du bouton */
-.article-button:hover {
-    background-color: #0056b3; /* Couleur de fond au survol */
+.article:hover .article-image {
+    transform: scale(1.1); /* Zoom de 10% lors du survol */
 }
+
+
+
+
+
+
