@@ -102,6 +102,7 @@ a.txt:after {
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
 }
+
 #myChart {
     margin: 0 auto;
     background: white;
@@ -335,52 +336,22 @@ select{
     text-align: center;
 }
 
+.article-title a:hover {
+    color: #666; /* Couleur de texte gris */
+}
+
+
 .article-image {
-    width: 100%; /* Largeur de l'image à 100% de la largeur de l'article */
-    height: auto; /* Hauteur automatique pour conserver les proportions */
+    width: 350px; /* Largeur fixe */
+    height: 200px; /* Hauteur fixe */
     border-radius: 7px; /* Arrondi des bords de l'image */
+    object-fit: cover; /* Redimensionner l'image tout en conservant les proportions */
 }
 
 
 
-/* Style de la fenêtre modale */
-.modal {
-    display: none; /* Par défaut, la fenêtre modale est cachée */
-    position: fixed; /* Position fixe pour rester au-dessus du contenu de la page */
-    z-index: 1000; /* Une valeur élevée pour s'assurer que la fenêtre modale est au-dessus du reste du contenu */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
-    overflow: auto; /* Permet de faire défiler le contenu de la fenêtre modale si nécessaire */
-}
 
-/* Contenu de la fenêtre modale */
-.modal-content {
-    position: relative;
-    margin: auto;
-    padding: 20px;
-    width: 80%;
-    max-width: 800px; /* Largeur maximale de la fenêtre modale */
-    background-color: #fefefe;
-    border-radius: 10px;
-}
 
-/* Bouton de fermeture de la fenêtre modale */
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-}
 
-/* Contenu de l'iframe dans la fenêtre modale */
-#modal-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
+
 
