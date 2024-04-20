@@ -27,7 +27,65 @@
 
     <h1>Discover</h1>
 
-    <div class="premier_par">
+    <?php
+
+// Clé d'API du New York Times
+$apiKey = 'OALu4obq4iv1eM5NA0eUkAshpnni4QJA';
+
+// Nombre d'articles à afficher par page
+$perPage = 14;
+
+// Nombre total d'articles à récupérer
+$totalArticles = 15; // Par exemple, récupérer 30 articles au total
+
+// Termes de recherche pour les ouragans et les catastrophes naturelles
+$searchTerms = 'hurricanes,disaster,natural disaster,climate, climate change';
+
+// Boucle pour récupérer les articles par page
+for ($page = 0; $page * $perPage < $totalArticles; $page++) {
+    // URL de l'API du New York Times pour les articles sur les ouragans et les catastrophes naturelles,
+    // triés par date de publication, avec le nombre spécifié d'articles par page et la pagination
+    $url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=' . urlencode($searchTerms) . '&api-key=' . $apiKey . '&sort=newest&page-size=' . $perPage . '&page=' . ($page + 1);
+
+    // Effectuer la requête à l'API
+    $response = file_get_contents($url);
+
+    // Vérifier si la requête a réussi
+    if ($response === false) {
+        die('Erreur lors de la récupération des données depuis l\'API.');
+    }
+
+    // Convertir la réponse JSON en tableau associatif
+    $data = json_decode($response, true);
+
+    // Vérifier si des articles ont été trouvés
+    if ($data['status'] !== 'OK') {
+        die('Aucun article trouvé.');
+    }
+
+    // Afficher les articles sur la page en mosaïque
+    echo '<div class="mosaic">';
+    foreach ($data['response']['docs'] as $article) {
+        // Vérifier s'il y a une image associée à l'article
+        if (isset($article['multimedia'][0]['url'])) {
+            // Construire l'URL de l'image à partir de l'URL de base du New York Times
+            $imageUrl = 'https://www.nytimes.com/' . $article['multimedia'][0]['url'];
+            // Afficher l'image avec une classe pour la stylisation
+            echo '<div class="article">';
+            echo '<img class="article-image" src="' . $imageUrl . '" alt="Image article">';
+            // Ajouter un lien autour du titre pour ouvrir l'article dans un nouvel onglet
+            echo '<h2 class="article-title"><a href="' . $article['web_url'] . '" target="_blank">' . $article['headline']['main'] . '</a></h2>';
+            echo '</div>';
+        }
+    }
+    echo '</div>';
+}
+
+?>
+
+
+
+<div class="premier_par">
         <img src="../../images/ouragan_photo_1.jpg" class="img_p3">
         <div>
         <h1>Un ouragan, qu'est ce que c'est ?</h1>
@@ -51,5 +109,7 @@
         <img src="../../images/ouragan_photo_2.jpg" class="img_p3">
     </div>
     
+
+
 </body>
 </html>
