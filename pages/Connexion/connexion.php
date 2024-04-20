@@ -7,70 +7,44 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link href="../../styles/styles.css" rel="stylesheet" rel="stylesheet"/>
-    <title>Connexion</title>
-
-    <?php
-    include '../../BD/bd.php';
-    $bdd = getBD();
-    ?>
-
+    <link href="../../styles/styles.css" rel="stylesheet"/>
+    <title>Connexion et Inscription</title>
 </head>
-
-<body>
-    <script>
-            $(document).ready(function() {
-                $('form').submit(function(e) {
-                    e.preventDefault();
-
-                    var formData = {
-                        'email': $('#email').val(),
-                        'motdepasse': $('#motdepasse').val()
-                    };
-
-                    $.ajax({
-                        type: 'POST',
-                        url: 'connecter.php',
-                        data: formData,
-                        dataType: 'json',
-                        encode: true
-                    })
-                    .done(function(response) {
-                        if (response.success) {
-                            window.location.href = 'main.php';
-                        } else {
-                            alert(response.message);
-                        }
-                    });
-                });
-            });
-    </script>
-
+<body id="authPage">
     <header>
-
-    <nav class="nav-bar">
-    <a href="../../main.php"><img class="logo" src="../../images/logo3.png"></a>
-        <div class="nav-links">
-            <ul>
-                <li><a href="../Algorithme/Algorithme.php">Algorithm</a></li>
-                <li><a href="../RawData/RawData.php">Rawdata</a></li>
-                <li><a href="../Discover/Discover.php">Discover</a></li>
-                <li><a href="connexion.php">Connexion</a></li>
-            </ul>
-        </div>
-    </nav>
-
+        <nav class="nav-bar">
+            <a href="../../main.php"><img class="logo" src="../../images/logo3.png" alt="Logo"></a>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="../Algorithme/Algorithme.php">Algorithm</a></li>
+                    <li><a href="../RawData/RawData.php">Rawdata</a></li>
+                    <li><a href="../Discover/Discover.php">Discover</a></li>
+                    <li><a href="connexion.php">Connexion</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
-    <h1>Connexion</h1>
-    <form>
-        <label for="email">Adresse e-mail :</label>
-        <input type="email" id="email" name="email" required><br><br>
-
-        <label for="motdepasse">Mot de passe :</label>
-        <input type="password" id="motdepasse" name="motdepasse" required><br><br>
-
-        <input type="submit" value="Se connecter">
-    </form>
-    <p><a href="nouveau.php">Créer un compte</a></p>
+    <div class="container" id="authContainer">
+        <div class="form-container" id="loginContainer">
+            <h1>Connexion</h1>
+            <form>
+                <input type="email" id="email" name="email" placeholder="Adresse e-mail" required><br>
+                <input type="password" id="motdepasse" name="motdepasse" placeholder="Mot de passe" required><br>
+                <button type="submit" id="loginBtn">Se connecter</button>
+            </form>
+        </div>
+        <div class="form-container" id="signupContainer">
+            <h1>Enregistrement utilisateur</h1>
+            <form id="signupForm" autocomplete="off">
+                <input type="text" name="n" placeholder="Nom" required>
+                <input type="text" name="p" placeholder="Prénom" required>
+                <input type="text" name="adr" placeholder="Adresse" required>
+                <input type="text" name="mail" placeholder="Email" required>
+                <input type="password" name="mdp1" placeholder="Mot de passe" required>
+                <input type="password" name="mdp2" placeholder="Confirmez le mot de passe" required>
+                <button type="button" id="envoieBtn">Envoyer</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

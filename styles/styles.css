@@ -250,3 +250,49 @@ select{
     border-radius: 10px;
     display: none;
 }
+
+#authPage {
+    background-image: url('../images/image_fond_page_algorithme.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+#authContainer {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+#loginContainer, #signupContainer {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#authPage input[type="email"], #authPage input[type="password"], #authPage input[type="text"], #authPage button {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#authPage button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+#authPage button:hover {
+    background-color: #45a049;
+}
+
+#authPage h1 {
+    text-align: center;
+    color: white;
+}
