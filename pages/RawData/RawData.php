@@ -152,7 +152,7 @@ function create2dChart(data) {
         },
         options: {
             responsive: false, // Désactiver la réponse au changement de taille de la fenêtre
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
             scales: {
                 x: {
                     type: 'time', // Utiliser un axe de type 'time' pour les dates
@@ -161,13 +161,28 @@ function create2dChart(data) {
                     },
                     title: {
                         display: true,
-                        text: 'Date'
+                        text: 'Date',
+                        color: 'white' // Couleur de l'axe x en blanc
+                    },
+                    ticks: {
+                        color: 'white' // Couleur des marques de l'axe x en blanc
                     }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: param
+                        text: param,
+                        color: 'white' // Couleur de l'axe y en blanc
+                    },
+                    ticks: {
+                        color: 'white' // Couleur des marques de l'axe y en blanc
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white' // Couleur des légendes en blanc
                     }
                 }
             }
@@ -199,6 +214,7 @@ $(document).ready(function() {
     $("html").css("background", "black");
     $("header").css("margin-bottom", "1.5em");
     $(".txt").addClass("visible");
+    $(".txt").css("border","none");
 });
 </script>
 
