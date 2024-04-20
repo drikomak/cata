@@ -121,6 +121,11 @@
                         var latLngs = trajetOuragan.map(function(coord) {
                             return L.latLng(coord[0], coord[1]);
                         });
+                        map.eachLayer(function (layer) {
+                            if (layer instanceof L.Polyline) {
+                                map.removeLayer(layer);
+                            }
+                        });
                         var polyline = L.polyline(latLngs, {color: 'red'}).addTo(map); // Ajouter la ligne à la carte
 
                         // Ajuster le zoom et la vue de la carte pour afficher la trajectoire de l'ouragan
