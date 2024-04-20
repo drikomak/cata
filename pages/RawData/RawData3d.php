@@ -82,6 +82,7 @@
         </form>
     </div>
     <canvas id="myChart"></canvas>
+    <div id="legende"></div>
     <a href="RawData.php" class=txt>Testez avec 1 paramètre !</a>
 
     <script>
@@ -107,11 +108,15 @@ $(document).ready(function() {
         });
     });
 });
-
-function createScatterPlot(data) {
+    function updateChartSize() {
+    var chartCanvas = document.getElementById('myChart');
+    chartCanvas.style.width = '900px';
+    chartCanvas.style.height = '600px';
+}
+    function createScatterPlot(data) {
     // Récupérer le canvas
     var ctx = document.getElementById('myChart').getContext('2d');
-
+    updateChartSize();
     // Vérifier si un graphique existe déjà
     if (window.myChart instanceof Chart) {
         // Si oui, le détruire

@@ -114,7 +114,11 @@ $(document).ready(function() {
         });
     });
 });
-
+function updateChartSize() {
+    var chartCanvas = document.getElementById('myChart');
+    chartCanvas.style.width = '900px';
+    chartCanvas.style.height = '600px';
+}
 function create2dChart(data) {
     // Récupérer le canvas
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -124,6 +128,7 @@ function create2dChart(data) {
         // Si oui, le détruire
         window.myChart.destroy();
     }
+    updateChartSize();
 
     // Récupérer la valeur du paramètre sélectionné
     var param = $('select[name="param"]').val();
@@ -146,7 +151,7 @@ function create2dChart(data) {
             }]
         },
         options: {
-            responsive: false, // Désactiver la réponse au changement de taille de la fenêtre
+            responsive: true, // Désactiver la réponse au changement de taille de la fenêtre
             maintainAspectRatio: false,
             scales: {
                 x: {
