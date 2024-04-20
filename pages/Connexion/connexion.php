@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link href="../../styles/styles.css" rel="stylesheet"/>
+    <link href="style_connexion.css" rel="stylesheet"/>
     <title>Connexion et Inscription</title>
 </head>
 <body id="authPage">
@@ -25,7 +25,7 @@
         </nav>
     </header>
     <div class="container" id="authContainer">
-        <div class="form-container" id="loginContainer">
+        <div class="form-container login-form">
             <h1>Connexion</h1>
             <form>
                 <input type="email" id="email" name="email" placeholder="Adresse e-mail" required><br>
@@ -33,7 +33,7 @@
                 <button type="submit" id="loginBtn">Se connecter</button>
             </form>
         </div>
-        <div class="form-container" id="signupContainer">
+        <div class="form-container signup-form">
             <h1>Enregistrement utilisateur</h1>
             <form id="signupForm" autocomplete="off">
                 <input type="text" name="n" placeholder="Nom" required>
