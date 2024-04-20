@@ -346,9 +346,12 @@ select{
     height: 200px; /* Hauteur fixe */
     border-radius: 7px; /* Arrondi des bords de l'image */
     object-fit: cover; /* Redimensionner l'image tout en conservant les proportions */
+    transition: transform 0.3s ease; /* Transition fluide pour l'effet de zoom */
 }
 
-
+.article:hover .article-image {
+    transform: scale(1.1); /* Zoom de 10% lors du survol */
+}
 
 
 
