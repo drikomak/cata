@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <?php require('../../BD/bd.php'); 
     // Appel de la fonction pour obtenir la connexion à la base de données
@@ -12,25 +12,13 @@
     ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
     <link href="../../styles/stylesIlyas.css" rel="stylesheet" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment/dist/chartjs-adapter-moment.min.js"></script>
-    <title>Données Brutes</title>
-    <style>
-        .txt {
-            opacity: 0;
-            transition: opacity 1s ease-in-out; /* Transition de 1 seconde avec une fonction d'accélération */
-        }
-        .txt.visible {
-            opacity: 1;
-        }
-    </style>
+<title>Données Brutes</title>
 </head>
 <body>
     <header>
@@ -51,7 +39,7 @@
     <h1><span class="txt">DONNEES BRUTES</span></h1>
 
     <div class="premier_par">
-        <img class="img_p2" src="../../images/north_america.jpg" alt="north america map">
+        <img class="gif" src="../../images/earth.gif" alt="">
         <div>
         <h2 class="txt">Statistique : Des données qui concernent l'Amérique du Nord</h2>
         <p class=txt>Dans un but éducatif, nous avons réalisé une interface permettant d'étudier les paramètres météorologiques 
@@ -85,7 +73,7 @@
         <input type="submit" value="Soumettre" class=txt>
         </form>
     </div>
-    <canvas id="myChart"></canvas>
+    <canvas id="myChart" width="900" height="500"></canvas>
     <a href="RawData3d.php" class=txt>Testez avec 2 paramètres !</a>
 
 <script>
@@ -114,11 +102,7 @@ $(document).ready(function() {
         });
     });
 });
-function updateChartSize() {
-    var chartCanvas = document.getElementById('myChart');
-    chartCanvas.style.width = '900px';
-    chartCanvas.style.height = '600px';
-}
+
 function create2dChart(data) {
     // Récupérer le canvas
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -128,8 +112,6 @@ function create2dChart(data) {
         // Si oui, le détruire
         window.myChart.destroy();
     }
-    updateChartSize();
-
     // Récupérer la valeur du paramètre sélectionné
     var param = $('select[name="param"]').val();
     var nom = $('select[name="name"]').val();
@@ -143,7 +125,7 @@ function create2dChart(data) {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Valeurs de ' + param,
+                label: param,
                 data: values,
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
@@ -200,11 +182,11 @@ function create2dChart(data) {
         <p class=txt>Les données météorologiques sont récoltées en temps réel grâce à l'API OpenWeatherMap.<br>
         Cet API nous permet de récupérer des données météorologiques sur n'importe quelle ville du monde.<br>
         Ces données sont ensuite utilisées pour être analysées par notre modèle de prédiction et afficher un résultat.
-        </p></div>
+        </p><a href="../Algorithme/Algorithme.php" class=txt>Consultez notre algorithme !</a></div>
         <img class="img_p2" src="../../images/OpenWeather-Logo.jpg" alt="">
     </div>
 
-    <a href="../Algorithme/Algorithme.php" class=txt>Consultez notre algorithme !</a>
+    
 </body>
 <script>
 $(document).ready(function() {

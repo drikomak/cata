@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <?php require('../../BD/bd.php'); 
     // Appel de la fonction pour obtenir la connexion à la base de données
@@ -12,9 +12,6 @@
     ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@0;1&display=swap" rel="stylesheet">
     <link href="../../styles/stylesIlyas.css" rel="stylesheet" rel="stylesheet">
     <!-- Import des bibliothèques -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -82,7 +79,7 @@
         <input type="submit" value="Soumettre" class=txt>
         </form>
     </div>
-    <canvas id="myChart"></canvas>
+    <canvas id="myChart" width="900" height="500"></canvas>
     <div id="legende"></div>
     <a href="RawData.php" class=txt>Testez avec 1 paramètre !</a>
 
@@ -109,11 +106,6 @@ $(document).ready(function() {
         });
     });
 });
-    function updateChartSize() {
-    var chartCanvas = document.getElementById('myChart');
-    chartCanvas.style.width = '900px';
-    chartCanvas.style.height = '600px';
-}
     function createScatterPlot(data) {
     // Récupérer le canvas
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -122,11 +114,11 @@ $(document).ready(function() {
         // Si oui, le détruire
         window.myChart.destroy();
     }
-    updateChartSize();
 
     // Récupérer la valeur du paramètre sélectionné
     var param1 = $('select[name="param1"]').val();
     var param2 = $('select[name="param2"]').val();
+    var nom = $('select[name="name"]').val();
 
     // Extraction des données pour le graphique
 // Extraction des données pour le graphique
@@ -145,9 +137,9 @@ $(document).ready(function() {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Valeurs de ' + param1,
+                label: param1,
                 data: valuesParam1,
-                backgroundColor: 'rgba(0, 0, 200, 0.5)', // Couleur de remplissage des points en bleu avec opacité 0.5
+                backgroundColor: 'rgb(173, 216, 230)', // Couleur de remplissage des points en lightblue avec opacité 0.5
                 borderColor: 'rgba(0, 0, 255, 1)', // Couleur de contour des points
                 borderWidth: 1,
                 pointRadius: pointRadii, // Taille des points basée sur les valeurs de paramètre 2
