@@ -54,7 +54,7 @@
     <h2 class=txt>Choisissez l'ouragan et les paramètres que vous voulez étudier</h2>
 
     <div class=graph>
-        <form action="requete_graph.php" method="post">
+        <form action="requete_graph3d.php" method="post">
         <label for="ouragan">Ouragan :</label>
         <select name="nameYear" class="txt">
         <?php
@@ -88,7 +88,7 @@ $(document).ready(function() {
         e.preventDefault();
         var formData = $(this).serialize();
         $.ajax({
-            url: 'requete_graph.php',
+            url: 'requete_graph3d.php',
             type: 'POST',
             data: formData,
             dataType: 'json',
@@ -97,6 +97,7 @@ $(document).ready(function() {
                     // Créer le graphique avec les données reçues
                     console.log(response.data);
                     create3dChart(response.data);
+                    $("#myChart").css("display", "block"); // Afficher le graphique une fois créé
                 } else {
                     alert(response.message); // Afficher un message d'erreur
                 }
@@ -145,7 +146,6 @@ function create3dChart(data) {
     // Affichage du graphe 3D
     Plotly.newPlot('myChart', [trace], layout);
 }
-
 </script>
 
 <div class="premier_par">
@@ -162,9 +162,11 @@ function create3dChart(data) {
 </body>
 <script>
 $(document).ready(function() {
-    $("body").css("background", "linear-gradient(135deg, black, darkblue)");
-    $("body").css("background-repeat", "no-repeat");
-    $("body").css("background-size", "cover");
+    $("body").css({
+        "background": "linear-gradient(135deg, black, darkblue)",
+        "background-repeat": "no-repeat",
+        "background-size": "cover",
+    });
     $("html").css("background", "black");
     $("header").css("margin-bottom", "1.5em");
     $(".txt").addClass("visible");

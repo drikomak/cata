@@ -83,8 +83,7 @@
         <input type="submit" value="Soumettre" class=txt>
         </form>
     </div>
-    <div>
-    <canvas id="myChart"></canvas></div>
+    <canvas id="myChart"></canvas>
     <a href="RawData3d.php" class=txt>Testez avec 2 paramètres !</a>
 
 <script>
@@ -129,10 +128,9 @@ function create2dChart(data) {
     var nom = $('select[name="name"]').val();
 
     // Extraction des données pour le graphique
-    var labels = data.map(entry => entry.year + '-' + entry.month + '-' + entry.day + ' ' + entry.hour);
+    var labels = data.map(entry => entry.year + '-' + entry.month + '-' + entry.day + ' ' + entry.hour + 'h');
     var values = data.map(entry => entry[param]);
 
-    // Configuration du nouveau graphique
     window.myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -146,15 +144,14 @@ function create2dChart(data) {
             }]
         },
         options: {
-            scales: {
-                x: {
-                    type: 'category', // Utilisation des chaînes de caractères pour l'axe x
-                    labels: labels, // Définition des labels directement avec les chaînes de caractères
-                }
-            }
+            responsive: false, // Désactiver la réponse au changement de taille de la fenêtre
+            maintainAspectRatio: false,
+            heigt:600,
+            width:900
         }
     });
 }
+
 
 </script>
 
