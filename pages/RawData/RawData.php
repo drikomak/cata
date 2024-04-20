@@ -77,7 +77,7 @@
             </form>
         </div>
         <canvas id="myChart" width="900" height="500"></canvas>
-        <div id="map" style="height: 600px; display: none"></div>
+        <div id="map" style="height: 600px;"></div>
         <script>
             var map = L.map('map').setView([0, 0], 2); // Centrez la carte sur le monde entier avec un zoom de 2
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map); // Ajoutez une couche de tuiles OpenStreetMap
@@ -126,7 +126,6 @@
                         // Ajuster le zoom et la vue de la carte pour afficher la trajectoire de l'ouragan
                         map.fitBounds(polyline.getBounds());
                         $("#myChart").show();
-                        $("#map").show();
                     } else {
                         alert(response.message); // Afficher un message d'erreur
                     }
