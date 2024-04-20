@@ -25,6 +25,7 @@ h1, h2, h3{
     margin: 3em;
     line-height: 1em;
     border-radius: 5px;
+    border: white solid 2px;
     color: white;
     text-align: justify;
     padding: 0.5em;
@@ -37,9 +38,8 @@ h1, h2, h3{
 select.txt,input.txt, option.txt {
     background: black;
 }
-h1.txt, h2.txt{
+h2.txt{
     text-align: center;
-    text-decoration: underline;
 }
 a.txt {
     margin-top: 2em;
@@ -102,25 +102,21 @@ a.txt:after {
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
 }
+
 #myChart {
-    color: white;
-    margin: 0 auto;
-    display: none;
-    width: 900px;
-    height: 600px;
-}
-#legende {
     margin: 0 auto;
     background: white;
     border-radius: 10px;
     display: none;
+    width: 900px;
+    height: 600px;
 }
 .graph{
     color: white;
     display: flex;
+    border: white solid 2px;
     border-radius: 2em;
     padding-left: 1em;
-    background: linear-gradient(black, rgb(30,30,30),black);
     width: 60em;
     margin: 0 auto;
 }
@@ -282,8 +278,7 @@ a.txt:after {
 
 
 .p3{
-    color: #fff;
-    background-color: #000;
+    background-color: white;
 }
 
 .premier_par{
@@ -332,13 +327,28 @@ select{
     display: flex;
     flex-direction: row; /* Disposition de gauche a droite */
     flex-wrap: wrap;
+    justify-content: space-between;
     border-radius: 20%;
 }
 
 .article {
-    width: 30%; /* Largeur de chaque article */
+    width: calc(33.33% - 2%); /* Largeur de chaque article */
     margin: 1%;
     text-align: center;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    flex-grow: 1;
+}
+
+.article-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333; /* Couleur de texte plus foncée */
+}
+
+
+.article-title a {
+    transition: color 0.3s ease; /* Transition fluide pour la couleur du texte */
 }
 
 .article-title a:hover {
