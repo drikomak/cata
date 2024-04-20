@@ -22,21 +22,93 @@ h1, h2, h3{
 }
 
 .txt{
-    background-color: rgb(43, 43, 43);
     margin: 3em;
-    line-height: 1.7em;
+    line-height: 1em;
     border-radius: 5px;
+    border: white solid 2px;
     color: white;
     text-align: justify;
     padding: 0.5em;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
 }
-.txt a{
-    background-color: grey;
-    transition: background-color 0.5s ease; /* Transition de 0.5 seconde avec une fonction d'accélération */
+.txt.visible {
+    opacity: 1;
+}
+select.txt,input.txt, option.txt {
+    background: black;
+}
+h2.txt{
+    text-align: center;
+}
+a.txt {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+a.txt:before {
+    content: '';
+    background: linear-gradient(45deg, lightblue, white, grey,rgb(77, 77, 77), black);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+a.txt:active {
+    color: #000
+}
+
+a.txt:active:after {
+    background: transparent;
+}
+
+a.txt:hover:before {
+    opacity: 1;
+}
+
+a.txt:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+#myChart {
     margin: 0 auto;
-}
-.txt a:hover{
-    background-color: rgb(43, 43, 43);
+    background: white;
+    border-radius: 10px;
+    display: none;
+    width: 900px;
+    height: 600px;
 }
 .graph{
     color: white;
@@ -52,7 +124,7 @@ h1, h2, h3{
     width: 25em;
     object-fit: cover;
     margin: 10px;
-    border-radius: 10px;
+    border-radius: 15px;
     padding: 2em;
 }
 .photo{
@@ -263,23 +335,52 @@ select{
     text-align: center;
 }
 
-.article-title a:hover {
-    color: #666; /* Couleur de texte gris */
-}
-
 .article-image {
-    width: 350px; /* Largeur fixe */
-    height: 200px; /* Hauteur fixe */
+    width: 100%; /* Largeur de l'image à 100% de la largeur de l'article */
+    height: auto; /* Hauteur automatique pour conserver les proportions */
     border-radius: 7px; /* Arrondi des bords de l'image */
-    object-fit: cover; /* Redimensionner l'image tout en conservant les proportions */
-    transition: transform 0.3s ease; /* Transition fluide pour l'effet de zoom */
-}
-
-.article:hover .article-image {
-    transform: scale(1.1); /* Zoom de 10% lors du survol */
 }
 
 
-.white-text {
-    color: white;
+
+/* Style de la fenêtre modale */
+.modal {
+    display: none; /* Par défaut, la fenêtre modale est cachée */
+    position: fixed; /* Position fixe pour rester au-dessus du contenu de la page */
+    z-index: 1000; /* Une valeur élevée pour s'assurer que la fenêtre modale est au-dessus du reste du contenu */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    overflow: auto; /* Permet de faire défiler le contenu de la fenêtre modale si nécessaire */
 }
+
+/* Contenu de la fenêtre modale */
+.modal-content {
+    position: relative;
+    margin: auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px; /* Largeur maximale de la fenêtre modale */
+    background-color: #fefefe;
+    border-radius: 10px;
+}
+
+/* Bouton de fermeture de la fenêtre modale */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Contenu de l'iframe dans la fenêtre modale */
+#modal-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+

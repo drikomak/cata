@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require('../../BD/bd.php'); 
+<?php require('../../BD/bd.php'); 
     // Appel de la fonction pour obtenir la connexion à la base de données
     $bdd = getBD();
 
@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@0;1&display=swap" rel="stylesheet">
     <link href="../../styles/styles.css" rel="stylesheet" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -22,18 +22,9 @@
     <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment/dist/chartjs-adapter-moment.min.js"></script>
     <title>Données Brutes</title>
-    <style>
-        .txt {
-            opacity: 0;
-            transition: opacity 1s ease-in-out; /* Transition de 1 seconde avec une fonction d'accélération */
-        }
-        .txt.visible {
-            opacity: 1;
-        }
-    </style>
 </head>
 <body>
-    <header>
+<header>
     <nav class="nav-bar">
     <a href="../../main.php"><img class="logo" src="../../images/logo3.png"></a>
         <div class="nav-links">
@@ -62,48 +53,50 @@
         </p></div>
     </div>
     
-    <h2 class=txt>Choisissez l'ouragan et le paramètre que vous voulez étudier</h2>
+    <h2 class=txt>Choisissez l'ouragan et les paramètres que vous voulez étudier</h2>
 
     <div class=graph>
-        <form action="requete_graph.php" method="post">
+        <form action="requete_graph3d.php" method="post">
         <label for="ouragan">Ouragan :</label>
         <select name="nameYear" class="txt">
         <?php
         foreach($noms as $nom){
-            echo "<option value='".$nom."' class=txt>".$nom."</option>";
+            echo "<option value='".$nom."'>".$nom."</option>";
         }
         ?>
         </select>
-        <br>
-        <label for="param">Paramètre :</label>
-        <select name="param" class=txt>
-        <option value="wind" class=txt>Vent</option>
-        <option value="pressure" class=txt>Pression</option>
-        <option value="exact_sst_anomaly" class=txt>Anomalie de température surface</option>
+        <br><br>
+        <label for="param1">Paramètre 1 :</label>
+        <select name="param1" class=txt>
+        <option value="wind">Vent</option>
+        <option value="pressure">Pression</option>
+        <option value="exact_sst_anomaly">Anomalie de température surface</option>
         </select>
-        <br>
+        <label for="param2">Paramètre 2 :</label>
+        <select name="param2" class=txt>
+        <option value="wind">Vent</option>
+        <option value="pressure">Pression</option>
+        <option value="exact_sst_anomaly">Anomalie de température surface</option>
+        </select>
         <input type="submit" value="Soumettre" class=txt>
         </form>
     </div>
     <canvas id="myChart"></canvas>
-    <a href="RawData3d.php" class=txt>Testez avec 2 paramètres !</a>
+    <a href="RawData.php" class=txt>Testez avec 1 paramètre !</a>
 
-<script>
+    <script>
 $(document).ready(function() {
     $("form").on("submit", function(e) {
         e.preventDefault();
         var formData = $(this).serialize();
         $.ajax({
-            url: 'requete_graph.php',
+            url: 'requete_graph3d.php',
             type: 'POST',
             data: formData,
             dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    // Créer le graphique avec les données reçues
-                    console.log(response.data);
-                    create2dChart(response.data);
-                    $("#myChart").show();
+                    createScatterPlot(response.data);
                 } else {
                     alert(response.message); // Afficher un message d'erreur
                 }
@@ -115,7 +108,7 @@ $(document).ready(function() {
     });
 });
 
-function create2dChart(data) {
+function createScatterPlot(data) {
     // Récupérer le canvas
     var ctx = document.getElementById('myChart').getContext('2d');
 
@@ -126,23 +119,33 @@ function create2dChart(data) {
     }
 
     // Récupérer la valeur du paramètre sélectionné
-    var param = $('select[name="param"]').val();
-    var nom = $('select[name="name"]').val();
+    var param1 = $('select[name="param1"]').val();
+    var param2 = $('select[name="param2"]').val();
 
     // Extraction des données pour le graphique
+// Extraction des données pour le graphique
     var labels = data.map(entry => moment.utc(entry.year + '-' + entry.month + '-' + entry.day + ' ' + entry.hour + 'h', 'YYYY-M-D H[h]').toISOString());
-    var values = data.map(entry => entry[param]);
+    var valuesParam1 = data.map(entry => entry[param1]);
+    var valuesParam2 = data.map(entry => entry[param2]);
+
+    // Calculer les rayons des points en fonction des valeurs de paramètre 2
+    var pointRadii = valuesParam2.map(value => {
+        // Normaliser les valeurs du paramètre 2 entre une plage de rayon de points, par exemple entre 3 et 10
+        return 3 + (value - Math.min(...valuesParam2)) * (10 - 3) / (Math.max(...valuesParam2) - Math.min(...valuesParam2));
+    });
 
     window.myChart = new Chart(ctx, {
-        type: 'line',
+        type: 'scatter',
         data: {
             labels: labels,
             datasets: [{
-                label: 'Valeurs de ' + param,
-                data: values,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
+                label: 'Valeurs de ' + param1,
+                data: valuesParam1,
+                backgroundColor: 'rgba(0, 0, 200, 0.5)', // Couleur de remplissage des points en bleu avec opacité 0.5
+                borderColor: 'rgba(0, 0, 255, 1)', // Couleur de contour des points
+                borderWidth: 1,
+                pointRadius: pointRadii, // Taille des points basée sur les valeurs de paramètre 2
+                pointHoverRadius: 8 // Taille des points au survol
             }]
         },
         options: {
@@ -162,15 +165,13 @@ function create2dChart(data) {
                 y: {
                     title: {
                         display: true,
-                        text: param
+                        text: param1
                     }
                 }
             }
         }
     });
 }
-
-
 
 </script>
 
@@ -188,13 +189,14 @@ function create2dChart(data) {
 </body>
 <script>
 $(document).ready(function() {
-    $("body").css("background", "linear-gradient(135deg, black, darkblue)");
-    $("body").css("background-repeat", "no-repeat");
-    $("body").css("background-size", "cover");
+    $("body").css({
+        "background": "linear-gradient(135deg, black, darkblue)",
+        "background-repeat": "no-repeat",
+        "background-size": "cover",
+    });
     $("html").css("background", "black");
     $("header").css("margin-bottom", "1.5em");
     $(".txt").addClass("visible");
 });
 </script>
-
 </html>
