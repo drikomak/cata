@@ -8,6 +8,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
     <link href="../../styles/styles.css" rel="stylesheet" />
     <title>Discover</title>
+
+    <style>
+        body {
+        background-color: black;
+    }
+
+    @keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+    </style>
 </head>
 <body class="p3">
     <header> 
