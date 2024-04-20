@@ -16,6 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@0;1&display=swap" rel="stylesheet">
     <link href="../../styles/styles.css" rel="stylesheet" rel="stylesheet">
+    <!-- Import des bibliothèques -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -116,12 +117,12 @@ $(document).ready(function() {
     function createScatterPlot(data) {
     // Récupérer le canvas
     var ctx = document.getElementById('myChart').getContext('2d');
-    updateChartSize();
     // Vérifier si un graphique existe déjà
     if (window.myChart instanceof Chart) {
         // Si oui, le détruire
         window.myChart.destroy();
     }
+    updateChartSize();
 
     // Récupérer la valeur du paramètre sélectionné
     var param1 = $('select[name="param1"]').val();
@@ -164,13 +165,29 @@ $(document).ready(function() {
                     },
                     title: {
                         display: true,
-                        text: 'Date'
+                        text: 'Date',
+                        color: 'white'
+                    },
+                    ticks: {
+                        color: 'white' // Couleur des marques de l'axe x en blanc
                     }
+                    
                 },
                 y: {
                     title: {
                         display: true,
-                        text: param1
+                        text: param1,
+                        color: 'white' // Couleur de l'axe y en blanc
+                    },
+                    ticks: {
+                        color: 'white' // Couleur des marques de l'axe y en blanc
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white' // Couleur des légendes en blanc
                     }
                 }
             }
