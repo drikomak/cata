@@ -1,10 +1,10 @@
 *{
     font-family: 'Poppins', sans-serif;
-    /* border: solid black 1px;   */
     text-decoration: none;
     margin: 0;
     padding: 0;
     list-style: none;
+    
 }
 header{
     margin-bottom: 1.5em;;
@@ -128,10 +128,12 @@ a.txt:after {
     height: 600px;
 }
 #legende {
-    margin: 0 auto;
-    background: white;
-    border-radius: 10px;
+    position: relative;
     display: none;
+    height: 2em;
+    padding: 0px;
+    border: white 1px solid;
+    margin-bottom: 2em;
 }
 .graph{
     color: white;
@@ -340,3 +342,17 @@ select{
 #map{
     margin-top: 50px;
 }
+.grandCercle{
+    height: 1em;
+    width: 1em;
+    border-radius: 50%;
+    background: lightblue;
+    border: blue 1px solid;
+    margin-left: 2px ;
+}
+.petitCercle{
+    height: 0.75em;
+    width: 0.75em;
+    border-radius: 50%;
+    background: lightblue;
+    border: blue 1px solid;}

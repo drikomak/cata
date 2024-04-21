@@ -74,16 +74,17 @@
                 </select>
                 <label for="param2">Paramètre 2 :</label>
                 <select name="param2" class=txt>
-                    <option value="wind">Vent</option>
                     <option value="pressure">Pression</option>
+                    <option value="wind">Vent</option>                    
                     <option value="exact_sst_anomaly">Anomalie de température surface</option>
                 </select>
                 <input type="submit" value="Soumettre" class=txt>
             </form>
         </div>
         <canvas id="myChart" width="900" height="500"></canvas>
+        <span id="legende"><p class=txt>LEGENDE: <div class=grandCercle></div><div class=petitCercle></p><p class=txt> La taille des cercles varie selon le paramètre 2</p></div></span>
         <a href="RawData.php" class=txt>Testez avec 1 paramètre !</a>
-        <div id="legende"></div>
+        
         <div id="map" style="height: 600px;"></div>
         <script>
             var map = L.map('map').setView([0, 0], 2); //on centre la carte sur le monde entier avec un zoom de 2
@@ -105,28 +106,41 @@
                             console.log(response.data);
                             createScatterPlot(response.data);
                             var latitudes = response.data.map(entry => entry.lat);
-                            var longitudes = response.data.map(entry => entry.long);
+                            var longitudes = response.data.map(entry => entry.long);//récupération des coordonnées géographiques
 
-                            // Crée un tableau de points de latitude et de longitude en tant que coordonnées de ligne pour Leaflet
+                            // on crée un tableau de points de latitude et de longitude en tant que coordonnées de ligne pour Leaflet
                             var trajetOuragan = latitudes.map(function(lat, index) {
                                 return [lat, longitudes[index]];
                             });
 
-                            // Crée une ligne reliant les points de latitude et de longitude sur la carte
+                            // on crée une ligne reliant les points de latitude et de longitude sur la carte
                             var latLngs = trajetOuragan.map(function(coord) {
                                 return L.latLng(coord[0], coord[1]);
                             });
-                            map.eachLayer(function (layer) {
-                                if (layer instanceof L.Polyline) {
+                            map.eachLayer(function(layer) {
+                                if (layer instanceof L.Polyline || layer instanceof L.Marker) {
                                     map.removeLayer(layer);
                                 }
                             });
-                            var polylineShadow2 = L.polyline(latLngs, { color: 'black', weight: 15, opacity: 0.4 }).addTo(map);
-                            var polylineShadow1 = L.polyline(latLngs, { color: 'grey', weight: 10, opacity: 0.8 }).addTo(map);
-                            var polyline = L.polyline(latLngs, { color: 'blue', weight: 7 , opacity: 1 }).addTo(map);
+                            var polylineShadow5 = L.polyline(latLngs, { color: 'white', weight: 18, opacity: 0.4 }).addTo(map);
+                            var polylineShadow4 = L.polyline(latLngs, { color: 'white', weight: 16, opacity: 0.6 }).addTo(map);
+                            var polylineShadow3 = L.polyline(latLngs, { color: 'white', weight: 14, opacity: 1 }).addTo(map);
+                            var polylineShadow2 = L.polyline(latLngs, { color: 'grey', weight: 12, opacity: 0.3 }).addTo(map);
+                            var polylineShadow1 = L.polyline(latLngs, { color: 'lightblue', weight: 10, opacity: 1 }).addTo(map);
+                            var polyline = L.polyline(latLngs, { color: 'blue', weight: 5 , opacity: 0.7 }).addTo(map);
 
-                            // On ajuste le zoom et la vue de la carte pour afficher la trajectoire de l'ouragan
-                            map.fitBounds(polyline.getBounds());
+                            // Ajouter des marqueurs pour le point de départ et le point d'arrivée
+                            var startPoint = L.marker([latitudes[0], longitudes[0]]).addTo(map);
+                            startPoint.bindPopup("Départ").openPopup(); // Ajouter une étiquette au marqueur de départ
+
+                            var endPoint = L.marker([latitudes[latitudes.length - 1], longitudes[longitudes.length - 1]]).addTo(map);
+                            endPoint.bindPopup("Arrivée").openPopup(); // Ajouter une étiquette au marqueur d'arrivée
+
+                            // Ajuster le zoom et la vue de la carte pour afficher la trajectoire de l'ouragan avec les marqueurs
+                            var bounds = L.latLngBounds([latitudes[0], longitudes[0]], [latitudes[latitudes.length - 1], longitudes[longitudes.length - 1]]);
+                            map.fitBounds(bounds);
+                            $("#legende").show();
+                            $("#legende").css("display", "flex");
                         } else {
                             alert(response.message); // Affiche un message d'erreur
                         }

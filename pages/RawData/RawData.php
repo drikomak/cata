@@ -114,8 +114,8 @@
                         var latLngs = trajetOuragan.map(function(coord) {
                             return L.latLng(coord[0], coord[1]);
                         });
-                        map.eachLayer(function (layer) {
-                            if (layer instanceof L.Polyline) {
+                        map.eachLayer(function(layer) {
+                            if (layer instanceof L.Polyline || layer instanceof L.Marker) {
                                 map.removeLayer(layer);
                             }
                         });
@@ -125,8 +125,17 @@
                         var polylineShadow2 = L.polyline(latLngs, { color: 'grey', weight: 12, opacity: 0.3 }).addTo(map);
                         var polylineShadow1 = L.polyline(latLngs, { color: 'lightblue', weight: 10, opacity: 1 }).addTo(map);
                         var polyline = L.polyline(latLngs, { color: 'blue', weight: 5 , opacity: 0.7 }).addTo(map);
-                        // on ajuste le zoom et la vue de la carte pour afficher la trajectoire de l'ouragan
-                        map.fitBounds(polyline.getBounds());
+
+                        // Ajouter des marqueurs pour le point de départ et le point d'arrivée
+                        var startPoint = L.marker([latitudes[0], longitudes[0]]).addTo(map);
+                        startPoint.bindPopup("Départ").openPopup(); // Ajouter une étiquette au marqueur de départ
+
+                        var endPoint = L.marker([latitudes[latitudes.length - 1], longitudes[longitudes.length - 1]]).addTo(map);
+                        endPoint.bindPopup("Arrivée").openPopup(); // Ajouter une étiquette au marqueur d'arrivée
+
+                        // Ajuster le zoom et la vue de la carte pour afficher la trajectoire de l'ouragan avec les marqueurs
+                        var bounds = L.latLngBounds([latitudes[0], longitudes[0]], [latitudes[latitudes.length - 1], longitudes[longitudes.length - 1]]);
+                        map.fitBounds(bounds);
                         $("#myChart").show();
                     } else {
                         alert(response.message); // Affiche un message d'erreur
