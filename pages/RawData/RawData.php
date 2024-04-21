@@ -24,7 +24,7 @@
         <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment/dist/chartjs-adapter-moment.min.js"></script><!--on importe moment.js pour adapter les dates au format ISO dans le graphe-->
         <title>Données Brutes</title>
-    </head>it
+    </head>
     <body>
         <header>
             <nav class="nav-bar">
@@ -59,6 +59,7 @@
             <form action="requete_graph.php" method="post">
                 <label for="ouragan">Ouragan :</label>
                 <select name="nameYear" class="txt">
+                    <option value="David (1979)" class="txt" selected="selected">David (1979)</option>
                     <?php
                         foreach($noms as $nom){
                             echo "<option value='".$nom."' class=txt>".$nom."</option>"; // on affiche les noms des ouragans dans une liste déroulante
@@ -77,22 +78,14 @@
             </form>
         </div>
         <canvas id="myChart" width="900" height="500"></canvas>
+        <a href="RawData2Par.php" class=txt>Testez avec 2 paramètres !</a>
         <div id="map" style="height: 600px;"></div>
         <script>
             var map = L.map('map').setView([0, 0], 2); //on centre la carte sur le monde entier avec un zoom de 2
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map); // on ajoute une couche de tuiles OpenStreetMap
         </script>
 
-        <a href="RawData2Par.php" class=txt>Testez avec 2 paramètres !</a>
-        <div class="premier_par">
-            <div>
-            <h2 class="txt">Temps réel : Utilisation d'une API</h2>
-            <p class=txt>Les données météorologiques sont récoltées en temps réel grâce à l'API OpenWeatherMap.<br>
-            Cette API nous permet de récupérer des données météorologiques sur n'importe quelle ville du monde.<br>
-            Ces données sont ensuite utilisées pour être analysées par notre modèle de prédiction et afficher un résultat.
-            </p><a href="../Algorithme/Algorithme.php" class=txt>Consultez notre algorithme !</a></div>
-            <img class="img_p2" src="../../images/OpenWeather-Logo.jpg" alt="">
-        </div> 
+        
     </body>
     <script>
         $(document).ready(function() {
@@ -126,8 +119,12 @@
                                 map.removeLayer(layer);
                             }
                         });
-                        var polyline = L.polyline(latLngs, {color: 'red'}).addTo(map); // Ajouter la ligne à la carte
-
+                        var polylineShadow5 = L.polyline(latLngs, { color: 'white', weight: 18, opacity: 0.4 }).addTo(map);
+                        var polylineShadow4 = L.polyline(latLngs, { color: 'white', weight: 16, opacity: 0.6 }).addTo(map);
+                        var polylineShadow3 = L.polyline(latLngs, { color: 'white', weight: 14, opacity: 1 }).addTo(map);
+                        var polylineShadow2 = L.polyline(latLngs, { color: 'grey', weight: 12, opacity: 0.3 }).addTo(map);
+                        var polylineShadow1 = L.polyline(latLngs, { color: 'lightblue', weight: 10, opacity: 1 }).addTo(map);
+                        var polyline = L.polyline(latLngs, { color: 'blue', weight: 5 , opacity: 0.7 }).addTo(map);
                         // on ajuste le zoom et la vue de la carte pour afficher la trajectoire de l'ouragan
                         map.fitBounds(polyline.getBounds());
                         $("#myChart").show();
@@ -165,7 +162,7 @@
                     label: param,
                     data: values,
                     fill: false,
-                    borderColor: 'rgb(75, 192, 192)',
+                    borderColor: 'rgb(0, 0, 128)',
                     tension: 0.1
                 }]
             },

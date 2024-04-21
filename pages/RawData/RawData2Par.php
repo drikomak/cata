@@ -58,6 +58,7 @@
             <form action="requete_graph3d.php" method="post">
                 <label for="ouragan">Ouragan :</label>
                 <select name="nameYear" class="txt">
+                    <option value="David (1979)" class="txt" selected="selected">David (1979)</option>
                     <?php
                         foreach($noms as $nom){
                             echo "<option value='".$nom."'>".$nom."</option>";// on affiche les noms des ouragans dans une liste déroulante
@@ -81,27 +82,13 @@
             </form>
         </div>
         <canvas id="myChart" width="900" height="500"></canvas>
+        <a href="RawData.php" class=txt>Testez avec 1 paramètre !</a>
         <div id="legende"></div>
         <div id="map" style="height: 600px;"></div>
         <script>
             var map = L.map('map').setView([0, 0], 2); //on centre la carte sur le monde entier avec un zoom de 2
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map); // on ajoute une couche de tuiles OpenStreetMap
         </script>
-
-        <a href="RawData.php" class=txt>Testez avec 1 paramètre !</a>
-
-
-    <div class="premier_par">
-            <div>
-            <h2 class="txt">Temps réel : Utilisation d'un API</h2>
-            <p class=txt>Les données météorologiques sont récoltées en temps réel grâce à l'API OpenWeatherMap.<br>
-            Cet API nous permet de récupérer des données météorologiques sur n'importe quelle ville du monde.<br>
-            Ces données sont ensuite utilisées pour être analysées par notre modèle de prédiction et afficher un résultat.
-            </p></div>
-            <img class="img_p2" src="../../images/OpenWeather-Logo.jpg" alt="">
-        </div>
-
-        <a href="../Algorithme/Algorithme.php" class=txt>Consultez notre algorithme !</a>
     </body>
     <script>
         $(document).ready(function() {
@@ -120,12 +107,12 @@
                             var latitudes = response.data.map(entry => entry.lat);
                             var longitudes = response.data.map(entry => entry.long);
 
-                            // Créer un tableau de points de latitude et de longitude en tant que coordonnées de ligne pour Leaflet
+                            // Crée un tableau de points de latitude et de longitude en tant que coordonnées de ligne pour Leaflet
                             var trajetOuragan = latitudes.map(function(lat, index) {
                                 return [lat, longitudes[index]];
                             });
 
-                            // Créer une ligne reliant les points de latitude et de longitude sur la carte
+                            // Crée une ligne reliant les points de latitude et de longitude sur la carte
                             var latLngs = trajetOuragan.map(function(coord) {
                                 return L.latLng(coord[0], coord[1]);
                             });
@@ -134,12 +121,14 @@
                                     map.removeLayer(layer);
                                 }
                             });
-                            var polyline = L.polyline(latLngs, {color: 'red'}).addTo(map); // Ajouter la ligne à la carte
+                            var polylineShadow2 = L.polyline(latLngs, { color: 'black', weight: 15, opacity: 0.4 }).addTo(map);
+                            var polylineShadow1 = L.polyline(latLngs, { color: 'grey', weight: 10, opacity: 0.8 }).addTo(map);
+                            var polyline = L.polyline(latLngs, { color: 'blue', weight: 7 , opacity: 1 }).addTo(map);
 
-                            // Ajuster le zoom et la vue de la carte pour afficher la trajectoire de l'ouragan
+                            // On ajuste le zoom et la vue de la carte pour afficher la trajectoire de l'ouragan
                             map.fitBounds(polyline.getBounds());
                         } else {
-                            alert(response.message); // Afficher un message d'erreur
+                            alert(response.message); // Affiche un message d'erreur
                         }
                     },
                     error: function() {
@@ -148,27 +137,26 @@
                 });
             });
             function createScatterPlot(data) {
-                // Récupérer le canvas
+                // Récupère le canvas
                 var ctx = document.getElementById('myChart').getContext('2d');
-                // Vérifier si un graphique existe déjà
+                // Vérifie si un graphique existe déjà
                 if (window.myChart instanceof Chart) {
-                    // Si oui, le détruire
+                    // Si oui, on le détruit
                     window.myChart.destroy();
                 }
-                // Récupérer la valeur du paramètre sélectionné
+                // Récupère la valeur du paramètre sélectionné
                 var param1 = $('select[name="param1"]').val();
                 var param2 = $('select[name="param2"]').val();
                 var nom = $('select[name="name"]').val();
 
                 // Extraction des données pour le graphique
-                // Extraction des données pour le graphique
                 var labels = data.map(entry => moment.utc(entry.year + '-' + entry.month + '-' + entry.day + ' ' + entry.hour + 'h', 'YYYY-M-D H[h]').toISOString());
                 var valuesParam1 = data.map(entry => entry[param1]);
                 var valuesParam2 = data.map(entry => entry[param2]);
 
-                // Calculer les rayons des points en fonction des valeurs de paramètre 2
+                // Calcule les rayons des points en fonction des valeurs de paramètre 2
                 var pointRadii = valuesParam2.map(value => {
-                    // Normaliser les valeurs du paramètre 2 entre une plage de rayon de points, par exemple entre 3 et 10
+                    // Normalise les valeurs du paramètre 2 entre une plage de rayon de points, par exemple entre 3 et 10
                     return 3 + (value - Math.min(...valuesParam2)) * (10 - 3) / (Math.max(...valuesParam2) - Math.min(...valuesParam2));
                 });
 
@@ -187,13 +175,13 @@
                         }]
                     },
                     options: {
-                        responsive: false, // Désactiver la réponse au changement de taille de la fenêtre
+                        responsive: false, // Désactive la réponse au changement de taille de la fenêtre
                         maintainAspectRatio: false,
                         scales: {
                             x: {
-                                type: 'time', // Utiliser un axe de type 'time' pour les dates
+                                type: 'time', // Utilise un axe de type 'time' pour les dates
                                 time: {
-                                    unit: 'day' // Définir l'unité de temps (jour, mois, année, etc.)
+                                    unit: 'day' // Définit l'unité de temps (jour, mois, année, etc.)
                                 },
                                 title: {
                                     display: true,

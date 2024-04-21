@@ -7,7 +7,8 @@
     list-style: none;
 }
 header{
-    margin-bottom: 1.5em;}
+    margin-bottom: 1.5em;;
+}
 body {
     background: linear-gradient(-45deg, #200aa0, #1f50b9, #23a6d5, #23d5ab);
     background-size: 400% 400%;
@@ -59,7 +60,7 @@ select.txt,input.txt, option.txt {
     background: black;
 }
 a.txt {
-    margin: 2em;
+    margin: 50px;
     width: 220px;
     height: 50px;
     border: none;
@@ -155,7 +156,6 @@ a.txt:after {
     align-items: center;
 }
 .nav-bar{
-    background-color: black;
     padding: 25px;
     display: flex;
     align-items: center;
@@ -170,19 +170,16 @@ a.txt:after {
 
 
 .nav-bar .nav-links ul{
-    background-color: black;
     display: flex;
 }
 
 .nav-bar .nav-links ul li{
-    background-color: black;
     margin: 0 8px;
 }
 
 .nav-bar a{
     border-bottom: 2px solid transparent;
     transition: border-bottom 0.4s;
-    background-color: black;
     color: white;
 }
 
@@ -339,4 +336,7 @@ select{
 }
 .gif{
     border-radius: 60%;
+}
+#map{
+    margin-top: 50px;
 }
