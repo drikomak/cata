@@ -9,23 +9,6 @@
     <link href="../../styles/styles.css" rel="stylesheet" />
     <title>Discover</title>
 
-    <style>
-        body {
-        background-color: black;
-    }
-
-    @keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-    </style>
 </head>
 <body class="p3">
     <header> 
@@ -43,6 +26,10 @@
     </header>
 
     <h1>Discover</h1>
+
+    <div class="description">
+    <p>Stay informed with the latest news articles from various sources, all focused on natural disasters.</p>
+</div>
 
     <div class="articles-container">
         <?php
