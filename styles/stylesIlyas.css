@@ -128,21 +128,59 @@ a.txt:after {
     height: 600px;
 }
 #legende {
-    position: relative;
+    color: white;
     display: none;
     height: 2em;
-    padding: 0px;
     border: white 1px solid;
-    margin-bottom: 2em;
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 4em;
+    text-align: center;
+    border-radius: 10px;
+    padding: 1em;
 }
-.graph{
+
+/*.graph{
     color: white;
     display: flex;
     border-radius: 2em;
     padding-left: 1em;
     background: linear-gradient(black, rgb(30,30,30),black);
     width: 60em;
+
+}*/
+.graph-container {
+    display: flex;
     margin: 0 auto;
+    margin-bottom: 4em;
+    margin-bottom: 5em;
+}
+
+.graph {
+    color: white;
+    border: 5px solid transparent; /* Définir une bordure transparente */
+    border-radius: 2em;
+    padding-left: 1em;
+    width: 60em;
+    animation: borderGradient 15s ease infinite;
+}
+
+@keyframes borderGradient {
+    0% {
+        border-color: #23d5ab;
+    }
+    25% {
+        border-color: #23a6d5;
+    }
+    50% {
+        border-color: #1f50b9;
+    }
+    75% {
+        border-color: #200aa0;
+    }
+    100% {
+        border-color: #23d5ab;
+    }
 }
 .img_p2{
     height:auto;
@@ -348,11 +386,19 @@ select{
     border-radius: 50%;
     background: lightblue;
     border: blue 1px solid;
-    margin-left: 2px ;
+    margin-left: 10px;
 }
-.petitCercle{
+.moyenCercle{
     height: 0.75em;
     width: 0.75em;
     border-radius: 50%;
     background: lightblue;
-    border: blue 1px solid;}
+    border: blue 1px solid;
+}
+.petitCercle{
+    height: 0.5em;
+    width: 0.5em;
+    border-radius: 50%;
+    background: lightblue;
+    border: blue 1px solid;
+    margin-right: 10px;}
