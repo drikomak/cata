@@ -27,20 +27,20 @@
         <title>Données Brutes</title>
     </head>
     <body>
-    <header>
-        <nav class="nav-bar">
-            <a href="../../main.php"><img class="logo" src="../../images/logo3.png"></a>
-            <div class="nav-links">
-                <ul>
-                    <li><a href="../Algorithme/Algorithme.php">Algorithm</a></li>
-                    <li><a href="RawData.php">Rawdata</a></li>
-                    <li><a href="../Discover/Discover.php">Discover</a></li>
-                    <li><a href="../Connexion/profile.php"><img src="../../images/profil.png" height = 30px></a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-        <h1><span class="txt">DONNEES BRUTES</span></h1>
+        <header>
+            <nav class="nav-bar">
+                <a href="../../main.php"><img class="logo" src="../../images/logo3.png"></a>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="../Algorithme/Algorithme.php">Algorithm</a></li>
+                        <li><a href="RawData.php">Rawdata</a></li>
+                        <li><a href="../Discover/Discover.php">Discover</a></li>
+                        <li><a href="../Connexion/profile.php"><img src="../../images/profil.png" height = 30px></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <h1 class="txt">DONNEES BRUTES</h1>
         <div class="premier_par">
             <img class="gif" src="../../images/earth.gif" alt="north america map">
             <div>
@@ -53,12 +53,12 @@
                 </p>
             </div>
         </div>        
-        <h2 class=txt>Choisissez l'ouragan et les paramètres que vous voulez étudier</h2>
+        <h2><span class=txt>Choisissez l'ouragan et les paramètres que vous voulez étudier</span></h2>
         <div class=graph>
             <form action="requete_graph3d.php" method="post">
                 <label for="ouragan">Ouragan :</label>
-                <select name="nameYear" class="txt">
-                    <option value="David (1979)" class="txt" selected="selected">David (1979)</option>
+                <select name="nameYear">
+                    <option value="David (1979)" selected="selected">David (1979)</option>
                     <?php
                         foreach($noms as $nom){
                             echo "<option value='".$nom."'>".$nom."</option>";// on affiche les noms des ouragans dans une liste déroulante
@@ -67,13 +67,13 @@
                 </select>
                 <br>
                 <label for="param1">Paramètre 1 :</label>
-                <select name="param1" class=txt>
+                <select name="param1">
                     <option value="wind">Vent</option>
                     <option value="pressure">Pression</option>
                     <option value="exact_sst_anomaly">Anomalie de température surface</option>
                 </select>
                 <label for="param2">Paramètre 2 :</label>
-                <select name="param2" class=txt>
+                <select name="param2">
                     <option value="pressure">Pression</option>
                     <option value="wind">Vent</option>                    
                     <option value="exact_sst_anomaly">Anomalie de température surface</option>
@@ -83,7 +83,7 @@
         </div>
         <canvas id="myChart" width="900" height="500"></canvas>
         <span id="legende"><p>LEGENDE: <div class=grandCercle></div><div class=moyenCercle></div><div class=petitCercle></div></p><p> La taille des cercles varie selon le paramètre 2</p></span>
-        <div class=container><a href="RawData.php" class=txt>Testez avec 1 paramètre !</a></div>
+        <div class=container><a href="RawData.php" class=boutonPar>Testez avec 1 paramètre !</a></div>
         
         <div id="map" style="height: 600px;"></div>
         <script>

@@ -7,7 +7,7 @@
     
 }
 header{
-    margin-bottom: 1.5em;;
+    margin-bottom: 1.5em;
 }
 body {
     background: linear-gradient(-45deg, #200aa0, #1f50b9, #23a6d5, #23d5ab);
@@ -40,9 +40,11 @@ a{
 h1, h2, h3{
     color: white;
     text-align: center;
-    margin: auto;
+    margin: 3em;
 }
-
+h1.txt{
+    text-align: center;
+}
 .txt{
     margin: 3em;
     line-height: 1em;
@@ -53,16 +55,24 @@ h1, h2, h3{
     opacity: 0;
     transition: opacity 1s ease-in-out;
 }
+
 .txt.visible {
     opacity: 1;
 }
-select.txt,input.txt, option.txt {
+label{
+    margin: 1em;
+}
+select,input, option {
     background: black;
+    color: white;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    margin: 1em;
 }
 .container{
     text-align: center;
 }
-a.txt {
+.boutonPar{
     margin: 0 auto;
     width: 220px;
     height: 50px;
@@ -72,9 +82,11 @@ a.txt {
     background: #111;
     cursor: pointer;
     z-index: 0;
+    border-radius: 0.5em;
+    padding: 0.5em;
 }
 
-a.txt:before {
+.boutonPar:before {
     content: '';
     background: linear-gradient(45deg, white, lightblue, cyan, blue, darkblue, indigo, black, grey, white);
     position: absolute;
@@ -91,19 +103,19 @@ a.txt:before {
     border-radius: 10px;
 }
 
-a.txt:active {
+.boutonPar:active {
     color: #000
 }
 
-a.txt:active:after {
+.boutonPar:active:after {
     background: transparent;
 }
 
-a.txt:hover:before {
+.boutonPar:hover:before {
     opacity: 1;
 }
 
-a.txt:after {
+.boutonPar:after {
     z-index: -1;
     content: '';
     position: absolute;
@@ -152,7 +164,7 @@ a.txt:after {
     color: white;
     border: 5px solid transparent;
     border-radius: 2em;
-    padding-left: 1em;
+    padding:2em;
     width: 60em;
     animation: borderGradient 15s ease infinite;
 }
@@ -226,7 +238,34 @@ a.txt:after {
     object-fit: cover;
 }
 
+.image-main{
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;   
+}
 
+
+.main-page h1 {
+    position: absolute;
+    top: 40%;
+    left: 8%;
+}
+
+.main-page p {
+    font-size: large;
+    position: absolute;
+    top: 48%;
+    left: 10%;
+    max-width: 40%;
+    text-align: justify;
+    border-left: 2px solid transparent;
+}
+
+.main-page p:hover{
+    padding-left: 10px;
+    border-left: 2px solid black;
+    transition: border-left 1.2s;
+}
 
 #createButton {
     font-size:large;
@@ -325,22 +364,11 @@ a.txt:after {
     text-align: justify;
 }
 
-.img_p3{
-    border-radius: 5%;
-    padding-left: 8px;
-    width: 42em;
-    height: auto;
-    object-fit: cover;   
-}
-
-table {
-    color: white;
-}
 select{
     align-items: center;
 }
 .gif{
-    border-radius: 60%;
+    border-radius: 50%;
 }
 #map{
     margin-top: 50px;
