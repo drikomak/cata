@@ -1,36 +1,44 @@
 <?php
+// Démarrage de la session
 session_start();
-include '../../BD/bd.php';
 
-$bdd = getBD();
-
+// Vérification que les données nécessaires sont reçues
 if (isset($_POST['email']) && isset($_POST['motdepasse'])) {
     $email = $_POST['email'];
-    $motdepasse = $_POST['motdepasse'];
+    $password = $_POST['motdepasse'];
 
-    $requete = $bdd->prepare("SELECT * FROM user WHERE mail = ?");
-    $requete->execute([$email]);
+    // Inclusion du script de connexion à la base de données
+    include '../../BD/bd.php';  // Assurez-vous que le chemin d'accès est correct
+    $bdd = getBD();
 
-    if ($requete) {
-        $resultat = $requete->fetch();
+    // Préparation de la requête pour retrouver l'utilisateur par son email
+    $stmt = $bdd->prepare("SELECT id, nom, prenom, Pays, Ville, adresse, mdp FROM user WHERE mail = ?");
+    $stmt->execute([$email]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($resultat) {
-            if (password_verify($motdepasse, $resultat['mdp'])) {
-                $user = $resultat;
+    // Vérification du mot de passe
+    if ($user && password_verify($password, $user['mdp'])) {
+        // Si les identifiants sont corrects, stockage des informations de l'utilisateur en session
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['nom'] = $user['nom'];
+        $_SESSION['prenom'] = $user['prenom'];
+        $_SESSION['Pays'] = $user['Pays'];
+        $_SESSION['Ville'] = $user['Ville'];
+        $_SESSION['adresse'] = $user['adresse'];
+        $_SESSION['email'] = $email;  // Email est directement pris de l'input pour éviter de manipuler inutilement
+        $_SESSION['logged_in'] = true;
 
-                $_SESSION['user'] = $user;
-
-                echo json_encode(array('success' => true));
-            } else {
-                echo json_encode(array('success' => false, 'message' => 'Adresse e-mail ou mot de passe incorrects.'));
-            }
-        } else {
-            echo json_encode(array('success' => false, 'message' => 'Adresse e-mail ou mot de passe incorrects.'));
-        }
+        // Envoi d'une réponse de succès en JSON
+        echo json_encode(['status' => 'success']);
     } else {
-        echo json_encode(array('success' => false, 'message' => 'Une erreur s\'est produite lors de la connexion.'));
+        // Si les identifiants sont incorrects, envoi d'une réponse d'erreur
+        echo json_encode(['status' => 'error', 'message' => 'Identifiants incorrects']);
     }
 } else {
-    echo json_encode(array('success' => false, 'message' => 'Les champs email et motdepasse sont requis.'));
+    // Si les données nécessaires ne sont pas reçues, envoi d'une réponse d'erreur
+    echo json_encode(['status' => 'error', 'message' => 'Email et mot de passe sont requis.']);
 }
+
+// Fin du script
+exit;
 ?>
