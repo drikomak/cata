@@ -47,7 +47,7 @@
         <h1>Ourguessr : Restez informé sans stress</h1>
         <p>
         OuraGuessr, vous offre une expérience intuitive pour anticiper les ouragans à venir. 
-        En combinant les données de la NASA et des agences météorologiques locales, notre système convivial vous permet de comprendre facilement les prévisions essentielles.
+        Combinant les données de la NASA et des agences météorologiques locales, OuraGuessr vous permet de comprendre facilement les prévisions essentielles.
         </p>
         <?php
         if (isset($_SESSION['user'])) {
