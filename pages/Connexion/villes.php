@@ -1,6 +1,6 @@
 <?php
 require '../../BD/bd.php';
-$bdd = getBDpays();
+$bdd = getBD();
 
 if (isset($_GET['country_id'])) {
     $countryCode = $_GET['country_id'];
