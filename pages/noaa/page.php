@@ -50,6 +50,27 @@
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
+                // Récupérer la position de l'utilisateur
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                // Récupérer les coordonnées de la position de l'utilisateur
+                var userLatitude = position.coords.latitude;
+                var userLongitude = position.coords.longitude;
+
+                // Placer un marqueur à la position de l'utilisateur sur la carte
+                var userMarker = L.marker([userLatitude, userLongitude]).addTo(map);
+                userMarker.bindPopup("Votre position actuelle").openPopup();
+
+                // Centrer la carte sur la position de l'utilisateur
+                map.setView([userLatitude, userLongitude], 10); // Zoom de niveau 10, ajustez selon vos besoins
+            }, function(error) {
+                // En cas d'erreur lors de la récupération de la position de l'utilisateur
+                console.error("Erreur lors de la récupération de la position de l'utilisateur :", error);
+            });
+        } else {
+            // Si la géolocalisation n'est pas prise en charge par le navigateur
+            console.log("La géolocalisation n'est pas disponible sur ce navigateur.");
+        }
         // Définition des icônes d'ouragans
         var hurricaneIcons = {
             "Category 1": L.icon({
@@ -79,6 +100,18 @@
             }),
             // Ajoutez d'autres catégories d'ouragan au besoin
         };
+
+        // Fonction pour générer des coordonnées aléatoires
+        function generateRandomCoordinates() {
+            var lat = Math.random() * (90 - (-90)) + (-90);
+            var lng = Math.random() * (180 - (-180)) + (-180);
+            return [lat, lng];
+        }
+
+        // Placer un marqueur au hasard sur la carte
+        var randomCoordinates = generateRandomCoordinates();
+        var randomMarker = L.marker(randomCoordinates).addTo(map);
+        randomMarker.bindPopup("Marqueur aléatoire").openPopup();
 
         // Récupérer les données d'ouragan depuis l'API de la NOAA
         fetch('https://api.weather.gov/alerts/active?event=Hurricane')
