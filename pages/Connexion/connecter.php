@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'bd.php';
+include '../../BD/bd.php';
 
 $bdd = getBD();
 

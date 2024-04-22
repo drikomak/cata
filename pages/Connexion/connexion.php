@@ -39,13 +39,13 @@
         <input type="text" name="n" placeholder="Nom" required>
         <input type="text" name="p" placeholder="Prénom" required>
         <input type="text" name="adr" placeholder="Adresse" required>
-        <select id="countrySelect" name="country" required>
+        <select id="countrySelect" name="Pays" required>
     <option value="" disabled selected>Sélectionnez un pays</option>
-    <!-- Assurez-vous que les options suivantes ont des valeurs qui ne sont pas "vides" -->
+
 </select>
-<select id="citySelect" name="city" required>
+<select id="citySelect" name="Ville" required>
     <option value="" disabled selected>Sélectionnez une ville</option>
-    <!-- Assurez-vous que les options suivantes ont des valeurs qui ne sont pas "vides" -->
+
 </select>
 
         <input type="email" name="mail" placeholder="Email" required>
@@ -82,7 +82,7 @@ $(document).ready(function() {
         });
     });
 
-    // Gestion de l'inscription
+    $(document).ready(function() {
     $('#signupForm').submit(function(e) {
         e.preventDefault();
         var formData = $(this).serialize();
@@ -96,14 +96,22 @@ $(document).ready(function() {
                     alert("Compte créé avec succès!");
                     window.location.href = "../../main.php";
                 } else {
-                    alert(response.message);
+                    var errors = response.errors;
+                    var errorMessage = "Veuillez corriger les erreurs suivantes :\n\n";
+                    $.each(errors, function(field, message) {
+                        errorMessage += message + "\n";
+                    });
+                    alert(errorMessage);
                 }
             },
-            error: function() {
-                alert("Une erreur s'est produite lors de l'inscription. Veuillez réessayer.");
+            error: function(xhr) {
+                alert("Erreur réseau : " + xhr.status + " " + xhr.statusText);
             }
         });
     });
+});
+
+
 });
     </script>
 </body>
