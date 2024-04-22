@@ -39,11 +39,11 @@
                 </div>
             </nav>
         </header>
-        <h1><span class="txt">DONNEES BRUTES</span></h1>
+        <h1 class=txt>DONNEES BRUTES</h1>
         <div class="premier_par">
             <img class="gif" src="../../images/earth.gif" alt="">
             <div>
-                <h2 class="txt">Statistique : Des données qui concernent l'Amérique du Nord</h2>
+                <h2 class=txt>Statistique : Des données qui concernent l'Amérique du Nord</h2>
                 <p class=txt>Dans un but éducatif, nous avons réalisé une interface permettant d'étudier les paramètres météorologiques 
                 d'ouragans ayant frappé les côtes Est et Ouest de l'Amérique du nord. En effet, cette zone géographique étant
                 particulièrement sujette aux intempéries et aux incidents météorologiques, elle bénéficie d'une attention spéciale
@@ -53,32 +53,32 @@
             </div>
         </div>
         
-        <h2 class=txt>Choisissez l'ouragan et le paramètre que vous voulez étudier</h2>
+        <h2><span class=txt>Choisissez l'ouragan et le paramètre que vous voulez étudier</span></h2>
 
         <div class=graph>
             <form action="requete_graph.php" method="post">
                 <label for="ouragan">Ouragan :</label>
-                <select name="nameYear" class="txt">
-                    <option value="David (1979)" class="txt" selected="selected">David (1979)</option>
+                <select name="nameYear">
+                    <option value="David (1979)" selected="selected">David (1979)</option>
                     <?php
                         foreach($noms as $nom){
-                            echo "<option value='".$nom."' class=txt>".$nom."</option>"; // on affiche les noms des ouragans dans une liste déroulante
+                            echo "<option value='".$nom."'>".$nom."</option>"; // on affiche les noms des ouragans dans une liste déroulante
                         }
                     ?>
                 </select>
                 <br>
                 <label for="param">Paramètre :</label>
-                <select name="param" class=txt>
-                    <option value="wind" class=txt>Vent</option>
-                    <option value="pressure" class=txt>Pression</option>
-                    <option value="exact_sst_anomaly" class=txt>Anomalie de température surface</option>
+                <select name="param">
+                    <option value="wind">Vent</option>
+                    <option value="pressure">Pression</option>
+                    <option value="exact_sst_anomaly">Anomalie de température surface</option>
                 </select>
                 <br>
                 <input type="submit" value="Soumettre" class=txt>
             </form>
         </div>
         <canvas id="myChart" width="900" height="500"></canvas>
-        <div class=container><a href="RawData2Par.php" class=txt>Testez avec 2 paramètres !</a></div>
+        <div class=container><a href="RawData2Par.php" class=boutonPar>Testez avec 2 paramètres !</a></div>
         <div id="map" style="height: 600px;"></div>
         <script>
             var map = L.map('map').setView([0, 0], 2); //on centre la carte sur le monde entier avec un zoom de 2
