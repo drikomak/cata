@@ -44,9 +44,10 @@
 
     <div class="main-page">
         
-        <h1>The most user friendly Ouragan catcher</h1>
-        <p>Based on multiple sources of data including Nasa and local meteorological agencies,
-            we developed a state of the art algorithm to predict key parameters of the next Ouragans.
+        <h1>Ourguessr : Restez informé sans stress</h1>
+        <p>
+        OuraGuessr, vous offre une expérience intuitive pour anticiper les ouragans à venir. 
+        En combinant les données de la NASA et des agences météorologiques locales, notre système convivial vous permet de comprendre facilement les prévisions essentielles.
         </p>
         <?php
         if (isset($_SESSION['user'])) {
@@ -61,7 +62,6 @@
 
     <footer>
         <div class="footer">
-            <p>© 2021 OuraGuessr</p>
         </div>
     </body>
 </html>

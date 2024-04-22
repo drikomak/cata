@@ -25,7 +25,7 @@
         </nav>
     </header>
 
-    <h1>Discover</h1>
+    <h1 class="disc-titre">Discover</h1>
 
     <div class="description">
     <p>Stay informed with the latest news articles from various sources, all focused on natural disasters.</p>
@@ -34,7 +34,7 @@
     <div class="articles-container">
         <?php
         $api_key = 'ac80fed48965452190a7dccad0bff3ab';
-        $sources_to_include = 'bbc-news,cnn,reuter,new-york-times'; // Liste des sources à inclure, séparées par des virgules        
+        $sources_to_include = 'bbc-news,cnn,reuter,new-york-times'; // Liste des sources à inclure (sources plus proche de notre sujets)    
         $keywords = '"natural disaster"'; // Mots-clés pour filtrer les articles
         $url = 'https://newsapi.org/v2/everything?q=' . urlencode($keywords) . '&sources=' . $sources_to_include . '&language=en&sortBy=relevancy&apiKey=' . $api_key . '&pageSize=9';
         
@@ -52,7 +52,7 @@
 
         if ($articles && isset($articles['articles']) && !empty($articles['articles'])) {
             foreach ($articles['articles'] as $idx => $article) {
-                // Vérifier si l'article a un titre, une URL, une image et s'il ne contient pas le contenu indésirable
+                // verif si l'article a un titre, une URL, une image et s'il ne contient pas le contenu indésirable
                 if (isset($article['title']) && isset($article['url']) && isset($article['urlToImage']) && strpos($article['title'], '[Removed]') === false) {
                     echo "<div class='article'>";
                     echo "<h3>" . " <a href=\"javascript:void(0);\" onclick=\"openArticle('".$article['url']."','".htmlspecialchars($article['title'], ENT_QUOTES)."');\">" . $article['title'] . "</a> (" . $article['source']['name'] . ")</h3>";

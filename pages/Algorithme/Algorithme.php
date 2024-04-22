@@ -64,9 +64,10 @@
         <div class="legend-item"><img src="../../images/cat2.png" alt="Catégorie 2" style="width: 20px; height: 20px; margin-right: 5px;"> Catégorie 2 (83-95 kt)</div>
         <div class="legend-item"><img src="../../images/cat3.png" alt="Catégorie 3" style="width: 20px; height: 20px; margin-right: 5px;"> Catégorie 3 (96-112 kt)</div>
         <div class="legend-item"><img src="../../images/cat4.png" alt="Catégorie 4" style="width: 20px; height: 20px; margin-right: 5px;"> Catégorie 4 (113-136 kt)</div>
-        <div class="legend-item"><img src="../../images/cat5.png" alt="Catégorie 5" style="width: 20px; height: 20px; margin-right: 5px;"> Catégorie 5 (&gt; 136 kt)</div>
+        <div class="legend-item"><img src="../../images/cat5.png" alt="Catégorie 5" style="width: 20px; height: 20px; margin-right: 5px;"> Catégorie 5 (&gt;= 136 kt)</div>
     </div>
     <script>
+        // parametre de la map
     var map = L.map('map', {
         zoomControl: false,
         scrollWheelZoom: true,
@@ -79,6 +80,14 @@
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Créer un cercle autour de la position de l'utilisateur
+    var userCircle = L.circle([20.0, -60.0], {
+        radius: 100000, // Rayon du cercle en mètres (correspondant à 100 km)
+        color: 'black',
+        fillColor: 'red', 
+        fillOpacity: 0.5 
     }).addTo(map);
 
     // Définition des icônes d'ouragans
@@ -108,15 +117,16 @@
             iconSize: [50, 50],
             iconAnchor: [15, 15]
         }),
-        // Ajoutez d'autres catégories d'ouragan au besoin
     };
 
     function calculateDistance(lat1, lon1, lat2, lon2) {
+
         // Convertir les degrés en radians
         var radLat1 = Math.PI * lat1 / 180;
         var radLat2 = Math.PI * lat2 / 180;
         var radLon1 = Math.PI * lon1 / 180;
         var radLon2 = Math.PI * lon2 / 180;
+
         // Calculer la différence de latitude et de longitude
         var deltaLat = radLat2 - radLat1;
         var deltaLon = radLon2 - radLon1;
@@ -125,6 +135,7 @@
                 Math.cos(radLat1) * Math.cos(radLat2) *
                 Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
         var distance = 6371 * c; // Rayon moyen de la Terre en km
         return distance;
     }
@@ -136,6 +147,7 @@
     // Récupérer la position de l'utilisateur
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function(position) {
+
             // Récupérer les coordonnées de la position de l'utilisateur
             userLatitude = position.coords.latitude;
             userLongitude = position.coords.longitude;
@@ -145,15 +157,18 @@
             userMarker.bindPopup("Votre position actuelle").openPopup();
 
             // Centrer la carte sur la position de l'utilisateur
-            map.setView([userLatitude, userLongitude], 10); // Zoom de niveau 10, ajustez selon vos besoins
+            map.setView([userLatitude, userLongitude], 10); 
+
+            userCircle.setLatLng([userLatitude, userLongitude]).addTo(map);
 
             // Récupérer les données d'ouragan depuis l'API de la NOAA après avoir obtenu la position de l'utilisateur
             fetch('https://api.weather.gov/alerts/active?event=Hurricane')
                 .then(response => response.json())
                 .then(data => {
-                    console.log('Les données d\'ouragan ont été récupérées avec succès !'); // Affiche une phrase dans la console lorsque les données sont récupérées
-                    console.log('Données détaillées :', data); // Ajout pour afficher les données détaillées dans la console
+                    console.log('Les données d\'ouragan ont été récupérées avec succès !'); // verif console
+                    console.log('Données détaillées :', data); // verif console
                     var heatmapData = []; // Tableau pour stocker les coordonnées des ouragans
+                    
                     // Afficher les alertes d'ouragan sur la carte
                     if(data.features.length === 0) {
                         document.getElementById('no-hurricane').style.display = 'block';
@@ -182,20 +197,19 @@
 
                             // Calculer la distance entre l'utilisateur et l'ouragan
                             var distance = calculateDistance(userLatitude, userLongitude, coordinates[0], coordinates[1]);
-
-                            // Si la distance est inférieure à un seuil, définir userAlert à true
+                            
                             if (distance < 100) { // 100 kilomètres de seuil
                                 userAlert = true;
                             }
 
-                            // Créer le marqueur avec l'icône correspondante
+                            // Marqueur ouragan
                             L.marker(coordinates, { icon: hurricaneIcons[category] }).addTo(map).bindPopup(description);
                         });
 
                         // Créer la heatmap
                         L.heatLayer(heatmapData, { radius: 20 }).addTo(map);
 
-                        // Si userAlert est true, afficher une alerte
+                        // Si userAlert est true, afficher lalerte
                         if (userAlert) {
                             var alertDiv = document.createElement('div');
                             alertDiv.innerHTML = 'Attention ! Vous êtes proche d\'un ouragan.';
