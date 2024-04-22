@@ -28,10 +28,10 @@ fetch('pays.php')
         fetchWeatherData(cityName); 
     });
 });
-
 function fetchWeatherData(location) {
-    const apiKey = 'c1a08848aa6a49da9dd140100241704';
+    const apiKey = 'c1a08848aa6a49da9dd140100241704';  // Utilisez votre clé API réelle ici
     const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=no`;
+
     fetch(apiUrl)
         .then(response => {
             if (!response.ok) {
@@ -44,15 +44,13 @@ function fetchWeatherData(location) {
 }
 
 function updateWeatherDisplay(data) {
-    console.log(data);  
     const weather = data.current;
     const weatherHtml = `
         <h2>Weather in ${data.location.name}</h2>
         <p>Temperature: ${weather.temp_c}°C / ${weather.temp_f}°F</p>
         <p>Wind Speed: ${weather.wind_kph} km/h / ${weather.wind_mph} mph</p>
-        <p>Wind Direction: ${weather.wind_degree} - ${weather.wind_dir}</p>
+        <p>Wind Direction: ${weather.wind_degree}° ${weather.wind_dir}</p>
         <p>Pressure: ${weather.pressure_mb} mb / ${weather.pressure_in} inHg</p>
-        
     `;
     document.getElementById('weatherDisplay').innerHTML = weatherHtml;
 }

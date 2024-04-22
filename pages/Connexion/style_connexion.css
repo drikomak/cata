@@ -13,8 +13,8 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Poppins', sans-serif;
-    background-color: #f4f4f9;
+    background-color: #f4f4f9; 
+    border-radius: 8px /* Adjusted background color for consistency */
 }
 
 /* Animated background gradient */
@@ -39,8 +39,7 @@ body {
 header {
     width: 100%;
     padding: 20px 50px;
-    background: transparent; /* Changed to transparent */
-    box-shadow: none; /* Remove box shadow for a fully transparent look */
+    background: transparent; /* Transparent header */
     position: fixed;
     top: 0;
     z-index: 1000;
@@ -64,79 +63,103 @@ header {
 
 .nav-links ul li a {
     text-decoration: none;
-    color: #ffffff; /* Consider changing text color for visibility against the background */
+    color: #ffffff; /* White color text for visibility */
     font-weight: bold;
-
 }
 
 .logo {
-    width: 250px; /* Adjusted width for better visibility */
-    height: auto; /* Keeps the aspect ratio */
+    width: 250px;
+    height: auto;
 }
 
 .container {
     display: flex;
-    justify-content: space-around;
-    margin-top: 100px; /* Adjust top margin to not overlap with the header */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center-align the content */
+    margin-top: 100px; /* Adjusted to avoid overlap with fixed header */
     width: 80%;
     max-width: 1000px;
-    gap: 20px; /* Space between form containers */
 }
 
 .form-container {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.726);
-    padding: 40px;
+    width: 100%; /* Full container width */
+    background: #ffffff; /* White background for forms */
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    min-width: 300px; /* Minimum width of each form */
+    margin-bottom: 20px; /* Space between sections */
 }
 
-input[type="email"], input[type="password"], input[type="text"] {
-    width: calc(100% - 20px); /* Full width minus padding */
+input[type="email"], input[type="password"], input[type="text"], select {
+    width: 100%; /* Full width */
     padding: 10px;
-    margin-top: 10px; /* Vertical space between inputs */
+    margin-top: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    display: block; /* Ensures inputs do not inline */
+    display: block;
 }
 
 button {
     width: 70%;
     padding: 10px;
-    margin: 20px auto; /* Top and bottom margin 20px, left and right auto for centering */
+    margin-top: 20px;
     border: none;
     background-color: #007BFF;
     color: white;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 16px; /* Larger text for better readability */
-    margin-left: 30px;
+    display: block; /* Center button */
+    margin-left: auto;
+    margin-right: auto;
 }
-
 
 button:hover {
     background-color: #0056b3;
 }
 
-select {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background: white;
-    display: block;
-}
-
 .weather-info {
+    width: 100%; /* Full container width */
     padding: 20px;
-    margin-top: 20px;
-    background: rgba(255, 255, 255, 0.9);
+    background: #ffffff; /* White background for weather info */
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-top: 20px; /* Space after form */
 }
-.login-form {
-    
-    max-height: 300px; /* Maximum width for login form */
+
+.profile-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffffc7;
+    border-radius: 8px /* White background for the table */
 }
+
+.profile-table th, .profile-table td {
+    border: 1px solid #ccccccb9;
+    padding: 8px;
+    text-align: left;
+    border-radius: 8px
+}
+
+.profile-table th {
+    background-color: #f8f8f8b0;
+    border-radius: 8px
+}
+
+/* Styles pour le titre du profil */
+.h1-profile {
+    font-size: 2.5rem; /* Taille de la police augmentée */
+    color: #eff1f3; /* Couleur bleue douce, mais visible */
+    text-align: center; /* Centrer le titre */
+    margin-top: 120px; /* Espacement pour ne pas chevaucher le header, ajustez selon vos besoins */
+    margin-bottom: 20px; /* Espacement avant le contenu suivant */
+    font-weight: bold; /* Moins de gras pour plus de finesse */
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2); /* Ombre subtile pour un effet de profondeur */
+    transition: all 0.3s ease-in-out; /* Transition pour hover effects */
+}
+
+/* Hover effect pour le titre */
+.h1-profile:hover {
+    transform: scale(1.1); /* Légère augmentation de taille au survol */
+    color: #e68e2a; /* Changement de couleur au survol */
+}
+
