@@ -78,7 +78,7 @@
             </form>
         </div>
         <canvas id="myChart" width="900" height="500"></canvas>
-        <a href="RawData2Par.php" class=txt>Testez avec 2 paramètres !</a>
+        <div class=container><a href="RawData2Par.php" class=txt>Testez avec 2 paramètres !</a></div>
         <div id="map" style="height: 600px;"></div>
         <script>
             var map = L.map('map').setView([0, 0], 2); //on centre la carte sur le monde entier avec un zoom de 2

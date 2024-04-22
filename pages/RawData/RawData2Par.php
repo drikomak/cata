@@ -82,8 +82,8 @@
             </form>
         </div>
         <canvas id="myChart" width="900" height="500"></canvas>
-        <span id="legende"><p class=legende>LEGENDE: <div class=grandCercle></div><div class=moyenCercle></div><div class=petitCercle></div></p><p class=legende> La taille des cercles varie selon le paramètre 2</p></span>
-        <a href="RawData.php" class=txt>Testez avec 1 paramètre !</a>
+        <span id="legende"><p>LEGENDE: <div class=grandCercle></div><div class=moyenCercle></div><div class=petitCercle></div></p><p> La taille des cercles varie selon le paramètre 2</p></span>
+        <div class=container><a href="RawData.php" class=txt>Testez avec 1 paramètre !</a></div>
         
         <div id="map" style="height: 600px;"></div>
         <script>

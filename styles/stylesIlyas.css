@@ -59,8 +59,11 @@ h1, h2, h3{
 select.txt,input.txt, option.txt {
     background: black;
 }
+.container{
+    text-align: center;
+}
 a.txt {
-    margin: 50px;
+    margin: 0 auto;
     width: 220px;
     height: 50px;
     border: none;
@@ -68,23 +71,20 @@ a.txt {
     color: #fff;
     background: #111;
     cursor: pointer;
-    position: relative;
     z-index: 0;
-    border-radius: 10px;
-    text-align: center;
 }
 
 a.txt:before {
     content: '';
-    background: linear-gradient(45deg, lightblue, white, grey,rgb(77, 77, 77), black);
+    background: linear-gradient(45deg, white, lightblue, cyan, blue, darkblue, indigo, black, grey, white);
     position: absolute;
     top: -2px;
     left:-2px;
     background-size: 400%;
     z-index: -1;
     filter: blur(5px);
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
     animation: glowing 20s linear infinite;
     opacity: 0;
     transition: opacity .3s ease-in-out;
@@ -126,6 +126,7 @@ a.txt:after {
     display: none;
     width: 900px;
     height: 600px;
+    margin-bottom: 3em;
 }
 #legende {
     color: white;
@@ -139,26 +140,17 @@ a.txt:after {
     border-radius: 10px;
     padding: 1em;
 }
-
-/*.graph{
-    color: white;
-    display: flex;
-    border-radius: 2em;
-    padding-left: 1em;
-    background: linear-gradient(black, rgb(30,30,30),black);
-    width: 60em;
-
-}*/
 .graph-container {
     display: flex;
     margin: 0 auto;
-    margin-bottom: 4em;
     margin-bottom: 5em;
 }
 
 .graph {
+    margin: 0 auto;
+    margin-bottom: 5em;
     color: white;
-    border: 5px solid transparent; /* Définir une bordure transparente */
+    border: 5px solid transparent;
     border-radius: 2em;
     padding-left: 1em;
     width: 60em;
@@ -242,16 +234,16 @@ a.txt:after {
 
 
 .main-page h1 {
-    position: absolute; /* Position absolue par rapport au conteneur parent */
-    top: 40%; /* Placez le haut du texte au milieu du conteneur parent */
-    left: 8%; /* Placez le côté gauche du texte au milieu du conteneur parent */
+    position: absolute;
+    top: 40%;
+    left: 8%;
 }
 
 .main-page p {
     font-size: large;
-    position: absolute; /* Position absolue par rapport au conteneur parent */
-    top: 48%; /* Placez le haut du texte au milieu du conteneur parent */
-    left: 10%; /* Placez le côté gauche du texte au milieu du conteneur parent */
+    position: absolute;
+    top: 48%;
+    left: 10%;
     max-width: 40%;
     text-align: justify;
     border-left: 2px solid transparent;
